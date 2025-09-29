@@ -1,0 +1,24 @@
+.header {
+  &__container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  &__list {
+    display: flex;
+    gap: 40px;
+  }
+
+  &__menu {
+    background-color: transparent;
+    border: none;
+    border-bottom: 2px solid transparent;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    &:hover {
+      border-bottom: 2px solid $color-text-dark;
+    }
+  }
+}
