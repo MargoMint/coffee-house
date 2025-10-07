@@ -1,0 +1,78 @@
+.footer {
+  margin-top: 93px;
+  &__container {
+    border-radius: 40px;
+    background-color: $color-bg-container;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 100px;
+    padding: 100px;
+  }
+  &__offer {
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+    &-title {
+      color: $color-text-light;
+    }
+    &-socials {
+      display: flex;
+      gap: 12px;
+    }
+    &-item {
+      width: 60px;
+      height: 60px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      border: 1px solid $color-border-light;
+      border-radius: 50%;
+    }
+    &-img {
+      width: 24px;
+      height: 24px;
+      display: block;
+    }
+  }
+  &__contacts {
+    color: $color-text-light;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 40px;
+
+    &-title {
+      font-weight: 600;
+      font-size: 24px;
+      line-height: 125%;
+    }
+
+    &-list {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    &-item {
+      display: flex;
+      align-items: center;
+      span {
+        font-weight: 600;
+        line-height: 165%;
+      }
+    }
+
+    &-link {
+      display: flex;
+      align-items: center;
+      text-decoration: none;
+      color: inherit;
+    }
+
+    &-icon {
+      width: 20px;
+      height: 20px;
+      margin-right: 8px;
+    }
+  }
+}
