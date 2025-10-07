@@ -13,11 +13,13 @@
 
 body {
   background: $color-bg-body;
+  color: $color-text-dark;
+  line-height: 150%;
 }
 
 a {
   text-decoration: none;
-  color: $color-text-dark;
+  color: inherit;
 }
 
 li {
@@ -45,9 +47,10 @@ section {
 }
 
 .button {
-  border: none;
+  border: 1px solid;
   border-radius: 100px;
   &-primary {
+    border: none;
     padding: 20px 78px;
     background-color: $color-text-light;
   }
@@ -58,7 +61,6 @@ section {
   font-weight: 600;
   line-height: 125%;
   letter-spacing: 2px;
-  color: $color-text-dark;
   &-accent {
     font-style: italic;
     color: $color-text-accent;

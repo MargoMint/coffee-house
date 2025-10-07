@@ -42,7 +42,6 @@
   }
 
   &__description {
-    line-height: 150%;
     color: $color-text-light;
   }
 }
@@ -96,5 +95,50 @@
   li:nth-child(4) {
     grid-column: 2;
     grid-row: 2 / span 2;
+  }
+}
+
+.app {
+  &__container {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 100px;
+  }
+
+  &__content {
+    place-self: center;
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+  }
+
+  &__btns {
+    display: flex;
+    gap: 20px;
+  }
+  &__btn {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 12px 20px;
+    width: 200px;
+    border: 2px solid $color-border-dark;
+    border-radius: 100px;
+
+    &-text {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+
+      span:first-child {
+        font-size: 10px;
+        line-height: 140%;
+      }
+
+      span:last-child {
+        font-size: 16px;
+        line-height: 150%;
+      }
+    }
   }
 }
