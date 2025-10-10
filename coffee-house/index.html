@@ -4,6 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Coffee House</title>
+    <link rel="shortcut icon" href="icons/coffee-cup.svg" type="image/x-icon" />
     <link rel="stylesheet" href="css/style.min.css" />
   </head>
   <body class="page">
@@ -14,12 +15,36 @@
           alt="Coffee House logo"
           class="header__logo"
         />
-        <nav class="header__nav">
+        <div class="header__burger"><span></span><span></span></div>
+        <div class="mobile-menu">
+          <ul class="mobile-menu__items">
+            <li class="mobile-menu__item">
+              <a href="#favorite" class="mobile-menu__link">Favorite coffee</a>
+            </li>
+            <li class="mobile-menu__item">
+              <a href="#about" class="mobile-menu__link">About</a>
+            </li>
+            <li class="mobile-menu__item">
+              <a href="#mobile-app" class="mobile-menu__link">Mobile app</a>
+            </li>
+            <li class="mobile-menu__item">
+              <a href="#contact-us" class="mobile-menu__link">Contact us</a>
+            </li>
+            <li class="mobile-menu__item">
+              <a href="menu.html" class="mobile-menu__link">
+                <span>Menu</span>
+                <img
+                  src="icons/coffee-cup.svg"
+                  alt="coffee-cup"
+                  class="mobile-menu__img"
+              /></a>
+            </li>
+          </ul>
+        </div>
+        <nav>
           <ul class="header__list">
             <li class="header__item">
-              <a href="favorite-coffee" class="header__link link"
-                >Favorite coffee</a
-              >
+              <a href="#favorite" class="header__link link">Favorite coffee</a>
             </li>
             <li class="header__item">
               <a href="#about" class="header__link link">About</a>

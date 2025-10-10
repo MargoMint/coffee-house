@@ -21,4 +21,49 @@
       border-bottom: 2px solid $color-text-dark;
     }
   }
+
+  &__burger {
+    display: none;
+    position: relative;
+    width: 44px;
+    height: 44px;
+    border: 1px solid $color-text-dark;
+    border-radius: 100px;
+    cursor: pointer;
+    flex-shrink: 0;
+    justify-content: center;
+    align-items: center;
+
+    span {
+      position: absolute;
+      left: 50%;
+      width: 18px;
+      height: 1.5px;
+      background-color: $color-text-dark;
+      border-radius: 2px;
+      transform: translateX(-50%);
+      transition: transform 0.3s ease, top 0.3s ease, bottom 0.3s ease;
+
+      &:first-child {
+        top: 16px;
+      }
+
+      &:last-child {
+        bottom: 16px;
+      }
+    }
+  }
+
+  &__burger.active {
+    span {
+      &:first-child {
+        top: 50%;
+        transform: translateX(-50%) rotate(45deg);
+      }
+      &:last-child {
+        bottom: 50%;
+        transform: translateX(-50%) rotate(-45deg);
+      }
+    }
+  }
 }

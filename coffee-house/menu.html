@@ -4,6 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Menu - Coffee House</title>
+    <link rel="shortcut icon" href="icons/coffee-cup.svg" type="image/x-icon" />
     <link rel="stylesheet" href="css/style.min.css" />
   </head>
   <body class="page">
@@ -14,25 +15,57 @@
           alt="Coffee House logo"
           class="header__logo"
         />
-        <nav class="header__nav">
+        <div class="header__burger"><span></span><span></span></div>
+        <div class="mobile-menu">
+          <ul class="mobile-menu__items">
+            <li class="mobile-menu__item">
+              <a href="index.html#favorite" class="mobile-menu__link"
+                >Favorite coffee</a
+              >
+            </li>
+            <li class="mobile-menu__item">
+              <a href="index.html#about" class="mobile-menu__link">About</a>
+            </li>
+            <li class="mobile-menu__item">
+              <a href="index.html#mobile-app" class="mobile-menu__link"
+                >Mobile app</a
+              >
+            </li>
+            <li class="mobile-menu__item">
+              <a href="#contact-us" class="mobile-menu__link">Contact us</a>
+            </li>
+            <li class="mobile-menu__item">
+              <a href="#" class="mobile-menu__link">
+                <span>Menu</span>
+                <img
+                  src="icons/coffee-cup.svg"
+                  alt="coffee-cup"
+                  class="mobile-menu__img"
+              /></a>
+            </li>
+          </ul>
+        </div>
+        <nav>
           <ul class="header__list">
             <li class="header__item">
-              <a href="favorite-coffee" class="header__link link"
+              <a href="index.html#favorite" class="header__link link"
                 >Favorite coffee</a
               >
             </li>
             <li class="header__item">
-              <a href="#about" class="header__link link">About</a>
+              <a href="index.html#about" class="header__link link">About</a>
             </li>
             <li class="header__item">
-              <a href="#mobile-app" class="header__link link">Mobile app</a>
+              <a href="index.html#mobile-app" class="header__link link"
+                >Mobile app</a
+              >
             </li>
             <li class="header__item">
               <a href="#contact-us" class="header__link link">Contact us</a>
             </li>
           </ul>
         </nav>
-        <a href="menu.html" class="header__menu">
+        <a href="#" class="header__menu">
           <span class="header__menu-text link">Menu</span>
           <img
             src="icons/coffee-cup.svg"
