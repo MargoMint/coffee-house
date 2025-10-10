@@ -6,7 +6,7 @@
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     gap: 100px;
-    padding: 100px;
+    padding: min(8vw, 100px);
   }
   &__offer {
     display: flex;
