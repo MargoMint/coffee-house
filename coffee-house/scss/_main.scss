@@ -116,6 +116,7 @@
     display: flex;
     gap: 20px;
   }
+
   &__btn {
     display: flex;
     align-items: center;
@@ -139,6 +140,14 @@
         font-size: 16px;
         line-height: 150%;
       }
+    }
+  }
+
+  &__img {
+    img {
+      max-width: 630px;
+      min-width: 348px;
+      width: 100%;
     }
   }
 }

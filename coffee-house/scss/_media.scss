@@ -1,3 +1,15 @@
+@media (max-width: 986px) {
+  .app {
+    &__container {
+      grid-template-columns: 1fr;
+    }
+    &__img {
+      display: flex;
+      justify-content: center;
+    }
+  }
+}
+
 @media (max-width: 768px) {
   .page {
     padding: 0 40px !important;
@@ -53,6 +65,17 @@
       font-size: 42px;
       line-height: 115%;
       letter-spacing: 1.5px;
+    }
+  }
+
+  .app {
+    &__title {
+      font-size: 32px;
+      line-height: 125%;
+    }
+
+    &__btns {
+      flex-direction: column;
     }
   }
 
@@ -131,6 +154,12 @@
     li:nth-child(2),
     li:nth-child(3) {
       display: none;
+    }
+  }
+
+  .app {
+    &__container {
+      grid-template-columns: 1fr;
     }
   }
 }
