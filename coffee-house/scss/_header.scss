@@ -5,6 +5,10 @@
     align-items: center;
   }
 
+  &__logo {
+    display: block;
+  }
+
   &__list {
     display: flex;
     gap: 40px;
@@ -17,7 +21,12 @@
     display: flex;
     align-items: center;
     gap: 8px;
+
     &:hover {
+      border-bottom: 2px solid $color-text-dark;
+    }
+
+    &--active {
       border-bottom: 2px solid $color-text-dark;
     }
   }

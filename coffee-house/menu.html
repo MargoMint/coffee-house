@@ -10,11 +10,13 @@
   <body class="page">
     <header class="header">
       <div class="container header__container">
-        <img
-          src="icons/logo.svg"
-          alt="Coffee House logo"
-          class="header__logo"
-        />
+        <a href="index.html" class="header__logo-link">
+          <img
+            src="icons/logo.svg"
+            alt="Coffee House logo"
+            class="header__logo"
+          />
+        </a>
         <div class="header__burger"><span></span><span></span></div>
         <div class="mobile-menu">
           <ul class="mobile-menu__items">
@@ -65,7 +67,7 @@
             </li>
           </ul>
         </nav>
-        <a href="#" class="header__menu">
+        <a href="#" class="header__menu" id="menu-link">
           <span class="header__menu-text link">Menu</span>
           <img
             src="icons/coffee-cup.svg"
@@ -75,6 +77,60 @@
         </a>
       </div>
     </header>
+
+    <main class="main">
+      <section class="menu">
+        <h1 class="menu__title title">
+          Behind each of our cups hides an
+          <span class="title-accent">amazing surprise</span>
+        </h1>
+        <ul class="menu__tabs">
+          <li class="menu__tab menu__tab--active" id="coffee">
+            <div class="menu__tab-icon-wrapper">
+              <img
+                src="icons/tabs/tab-item-1.png"
+                alt="Coffee"
+                class="menu__tab-icon"
+              />
+            </div>
+            <span class="menu__tab-text">Coffee</span>
+          </li>
+          <li class="menu__tab" id="tea">
+            <div class="menu__tab-icon-wrapper">
+              <img
+                src="icons/tabs/tab-item-2.png"
+                alt="Tea"
+                class="menu__tab-icon"
+              />
+            </div>
+            <span class="menu__tab-text">Tea</span>
+          </li>
+          <li class="menu__tab" id="dessert">
+            <div class="menu__tab-icon-wrapper">
+              <img
+                src="icons/tabs/tab-item-3.png"
+                alt="Dessert"
+                class="menu__tab-icon"
+              />
+            </div>
+            <span class="menu__tab-text">Dessert</span>
+          </li>
+        </ul>
+      </section>
+
+      <section class="menu-section coffee menu-section--active">
+        <h2>hello 1</h2>
+      </section>
+
+      <section class="menu-section tea">
+        <h2>hello 2</h2>
+      </section>
+
+      <section class="menu-section dessert">
+        <h2>hello 3</h2>
+      </section>
+    </main>
+
     <footer class="footer" id="contact-us">
       <div class="container footer__container">
         <div class="footer__offer">

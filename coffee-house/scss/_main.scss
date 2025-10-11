@@ -151,3 +151,87 @@
     }
   }
 }
+
+.favorite,
+.menu {
+  &__title {
+    text-align: center;
+  }
+}
+
+.menu {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 40px;
+  margin-top: 20px;
+
+  &__title {
+    max-width: 800px;
+    text-align: center;
+  }
+
+  &-section {
+    display: none;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+
+    &--active {
+      display: block;
+      opacity: 1;
+    }
+  }
+
+  &__tabs {
+    display: flex;
+    gap: 16px;
+  }
+
+  &__tab {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 8px 16px 8px 8px;
+    border: 1px solid $color-border-light;
+    border-radius: 100px;
+    background-color: transparent;
+    cursor: pointer;
+    font-weight: 600;
+    font-size: 16px;
+    color: $color-text-dark;
+    transition: all 0.3s ease;
+
+    &:hover {
+      background-color: $color-bg-container;
+    }
+
+    &--active {
+      background-color: $color-bg-container;
+      color: $color-text-light;
+
+      .menu__tab-icon-wrapper {
+        background-color: $color-text-light;
+      }
+    }
+
+    &-icon-wrapper {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 30px;
+      height: 30px;
+      padding: 3px 7px;
+      border-radius: 100px;
+      background-color: $color-border-light;
+      transition: background-color 0.3s ease;
+    }
+
+    &-icon {
+      width: 24px;
+      height: 24px;
+      transition: filter 0.3s ease;
+    }
+  }
+}
+
