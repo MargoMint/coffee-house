@@ -1,0 +1,128 @@
+.modal {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(0.9);
+  background: $color-text-light;
+  border-radius: 40px;
+  padding: 16px;
+  width: 100%;
+  max-width: 800px;
+  opacity: 0;
+  visibility: hidden;
+  transition: 0.3s;
+  z-index: 11;
+  overflow-y: auto;
+
+  &.active {
+    opacity: 1;
+    visibility: visible;
+    transform: translate(-50%, -50%) scale(1);
+  }
+
+  &__content {
+    display: flex;
+  }
+
+  &__title {
+    font-size: 24px;
+    line-height: 125%;
+  }
+
+  &__subtitle {
+    margin-bottom: 8px;
+  }
+
+  &__img {
+    width: 310px;
+    height: 310px;
+    border-radius: 40px;
+  }
+
+  &__info {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    padding-left: 20px;
+    gap: 20px;
+  }
+
+  &__btns {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  &__header {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .size-btn,
+  .add-btn {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    border: 1px solid $color-border-light;
+    border-radius: 100px;
+    padding: 8px 16px 8px 8px;
+    color: $color-text-dark;
+    background: transparent;
+    cursor: pointer;
+    transition: background-color 0.3s ease, color 0.3s ease;
+
+    &.active {
+      background: $color-bg-container;
+      color: $color-text-light;
+      & .size-btn__label {
+        background-color: $color-text-light;
+      }
+    }
+
+    &__label,
+    &__additives,
+    &__volume,
+    &__number {
+      font-weight: 600;
+      font-size: 16px;
+    }
+
+    &__label,
+    &__number {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      color: $color-text-dark;
+      background-color: $color-border-light;
+      transition: background-color 0.3s ease, color 0.3s ease;
+
+      &.active {
+        background-color: $color-text-light;
+      }
+    }
+  }
+
+  &__total {
+    display: flex;
+    justify-content: space-between;
+    font-weight: 600;
+    font-size: 24px;
+    line-height: 125%;
+  }
+
+  &__alert {
+    display: flex;
+    gap: 8px;
+    padding: 12px 0;
+    border-top: 1px solid $color-border-light;
+    &-text {
+      font-weight: 600;
+      font-size: 10px;
+      line-height: 140%;
+    }
+  }
+}

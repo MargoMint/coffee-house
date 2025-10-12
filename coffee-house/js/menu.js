@@ -81,3 +81,132 @@ document.addEventListener('DOMContentLoaded', () => {
     `;
   }
 });
+
+const overlay = document.querySelector('.overlay');
+const modal = document.querySelector('.modal');
+const modalContainer = document.querySelector('.modal__container');
+
+document.addEventListener('click', (e) => {
+  const card = e.target.closest('.menu-card');
+  if (card) {
+    const title = card.querySelector('.menu-card__title').textContent;
+    const category = document.querySelector('.menu__tab--active').id;
+    const product = products[category].find((p) => p.name === title);
+    openModal(product);
+  }
+});
+
+overlay.addEventListener('click', closeModal);
+modal.addEventListener('click', (e) => {
+  if (e.target.classList.contains('modal__close')) closeModal();
+});
+
+function openModal(product) {
+  const category = document.querySelector('.menu__tab--active').id;
+  const config = categoryConfig[category];
+
+  const sizeButtonsHTML = config.sizes
+    .map(
+      (size, i) => `
+      <button class="size-btn ${i === 0 ? 'active' : ''}" data-price="${
+        size.price
+      }">
+        <span class="size-btn__label">${size.label}</span>
+        <span class="size-btn__volume">${size.volume}</span>
+      </button>
+    `
+    )
+    .join('');
+
+  const addButtonsHTML = config.additives
+    .map(
+      (additive, i) => `
+      <button class="add-btn" data-price="0.5">
+        <span class="add-btn__number">${i + 1}</span>
+        <span class="add-btn__additives">${additive}</span>
+      </button>
+    `
+    )
+    .join('');
+
+  modalContainer.innerHTML = `
+    <div class="modal__content">
+      <img src="${product.image}" alt="${product.name}" class="modal__img" />
+      <div class="modal__info">
+        <div class="modal__header">
+          <h3 class="modal__title">${product.name}</h3>
+          <p class="modal__desc">${product.description}</p>
+        </div>
+
+        <div class="modal__sizes">
+          <p class="modal__subtitle">Size</p>
+          <div class="modal__btns">${sizeButtonsHTML}</div>
+        </div>
+
+        <div class="modal__additives">
+          <p class="modal__subtitle">Additives</p>
+          <div class="modal__btns">${addButtonsHTML}</div>
+        </div>
+
+        <div class="modal__total">
+          <p class="modal__total-text">Total:</p>
+          <span class="modal__price">${product.price}</span>
+        </div>
+
+        <div class="modal__alert">
+          <img src="icons/info.svg" alt="Info" class="modal__alert-img"/>
+          <p class="modal__alert-text">The cost is not final. Download our mobile app to see the final price and place your order. Earn loyalty points and enjoy your favorite coffee with up to 20% discount.</p>
+        </div>
+
+        <button class="button button-secondary modal__close">Close</button>
+      </div>
+    </div>
+  `;
+
+  document.body.style.overflow = 'hidden';
+  overlay.classList.add('active');
+  modal.classList.add('active');
+
+  setupPriceLogic(product);
+}
+
+function closeModal() {
+  modal.classList.remove('active');
+  overlay.classList.remove('active');
+  document.body.style.overflow = '';
+}
+
+function setupPriceLogic(product) {
+  const sizeButtons = modal.querySelectorAll('.size-btn');
+  const addButtons = modal.querySelectorAll('.add-btn');
+  const priceElement = modal.querySelector('.modal__price');
+
+  let basePrice = parseFloat(product.price.replace('$', ''));
+  let sizeExtra = 0;
+  let addExtras = 0;
+
+  sizeButtons.forEach((btn) => {
+    btn.addEventListener('click', () => {
+      sizeButtons.forEach((b) => b.classList.remove('active'));
+      btn.classList.add('active');
+      sizeExtra = parseFloat(btn.dataset.price);
+      updatePrice();
+    });
+  });
+
+  addButtons.forEach((btn) => {
+    btn.addEventListener('click', () => {
+      btn.classList.toggle('active');
+      const isActive = btn.classList.contains('active');
+      addExtras += isActive
+        ? parseFloat(btn.dataset.price)
+        : -parseFloat(btn.dataset.price);
+      updatePrice();
+    });
+  });
+
+  function updatePrice() {
+    const total = (basePrice + sizeExtra + addExtras).toFixed(2);
+    priceElement.textContent = `$${total}`;
+  }
+}
