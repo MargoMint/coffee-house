@@ -290,3 +290,22 @@
     }
   }
 }
+
+.load-more {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 60px;
+  height: 60px;
+  margin: 40px auto 0;
+  border-radius: 50%;
+  border: 1px solid $color-bg-container;
+  background-color: transparent;
+  cursor: pointer;
+  transition: 0.3s ease;
+
+  &__icon {
+    width: 24px;
+    height: 24px;
+  }
+}
