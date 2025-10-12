@@ -173,6 +173,7 @@
 
   &-section {
     display: none;
+    margin-top: 38px;
     opacity: 0;
     transition: opacity 0.3s ease;
 
@@ -233,5 +234,59 @@
       transition: filter 0.3s ease;
     }
   }
-}
 
+  &__cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(310px, 1fr));
+    gap: 40px;
+    justify-items: center;
+    transition: all 0.3s ease;
+  }
+
+  &-card {
+    border: 1px solid $color-border-light;
+    border-radius: 40px;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+
+    &__img {
+      width: 100%;
+      border-radius: 40px;
+      flex-shrink: 0;
+    }
+
+    &__content {
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      flex-grow: 1;
+    }
+
+    &__text {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      flex-grow: 1;
+      margin-bottom: 12px;
+      width: 266px;
+    }
+
+    &__title,
+    &__price {
+      font-size: 24px;
+      line-height: 125%;
+      font-weight: 600;
+      color: $color-text-dark;
+    }
+
+    &__price {
+      margin-top: auto;
+    }
+
+    &__desc {
+      font-size: 16px;
+    }
+  }
+}
