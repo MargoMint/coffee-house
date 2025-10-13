@@ -50,18 +50,19 @@
     display: flex;
     flex-direction: column;
     justify-content: center;
-    gap: 40px;
 
     &-title {
       font-weight: 600;
       font-size: 24px;
       line-height: 125%;
+      letter-spacing: 0.5px;
     }
 
     &-list {
+      margin-top: 40px;
       display: flex;
       flex-direction: column;
-      gap: 18px;
+      gap: 16px;
     }
 
     &-item {
@@ -69,7 +70,8 @@
       align-items: center;
       span {
         font-weight: 600;
-        line-height: 165%;
+        font-size: 16px;
+        line-height: 150%;
       }
     }
 
