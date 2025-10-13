@@ -109,6 +109,16 @@
     }
   }
 
+  .slider {
+    &__buttons {
+      display: none;
+    }
+    &__img-container img {
+      width: 348px;
+      height: 348px;
+    }
+  }
+
   .footer {
     &__container {
       padding: 60px 16px !important;

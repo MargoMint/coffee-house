@@ -181,6 +181,12 @@
   }
 }
 
+.favorite {
+  &__slider {
+    overflow: hidden;
+  }
+}
+
 .menu {
   display: flex;
   flex-direction: column;

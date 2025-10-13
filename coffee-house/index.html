@@ -97,15 +97,44 @@
       </section>
 
       <section class="favorite" id="favorite">
-        <div class="container">
-          <h2 class="favorite__title title">
-            Choose your
-            <span class="title-accent">favorite</span>
-            coffee
-          </h2>
-          <div class="favorite__slider"></div>
+  <div class="container">
+    <h2 class="favorite__title title">
+      Choose your <span class="title-accent">favorite</span> coffee
+    </h2>
+
+    <div class="favorite__slider">
+      <div class="slider">
+        <div class="slider__line"></div>
+
+        <div class="slider__buttons">
+          <button class="slider__btn slider__btn_left" disabled>
+            <svg width="24" height="24" viewBox="0 0 24 24">
+              <path
+                d="M18.5 12H6M6 12L12 6M6 12L12 18"
+                stroke="#403F3D"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              />
+            </svg>
+          </button>
+          <button class="slider__btn slider__btn_right">
+            <svg width="24" height="24" viewBox="0 0 24 24">
+              <path
+                d="M6 12H18.5M18.5 12L12.5 6M18.5 12L12.5 18"
+                stroke="#403F3D"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              />
+            </svg>
+          </button>
         </div>
-      </section>
+
+        <div class="slider__controls"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
 
       <section class="about" id="about">
         <div class="container">
@@ -359,6 +388,7 @@
       </div>
     </footer>
     <script src="js/main.js" defer></script>
+    <script src="js/products.js" defer></script>
     <script src="js/home.js" defer></script>
   </body>
 </html>
