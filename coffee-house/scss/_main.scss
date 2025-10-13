@@ -69,8 +69,8 @@
       height: 100%;
       object-fit: cover;
       display: block;
-      transform: scale(1.1);
-      transition: transform 0.4s;
+      transform: scale(1.05);
+      transition: transform 0.3s;
       &:hover {
         transform: scale(1);
       }
@@ -125,11 +125,15 @@
     width: 200px;
     border: 2px solid $color-border-dark;
     border-radius: 100px;
+    color: $color-text-dark;
+    background-color: transparent;
+    transition: all 0.3s ease;
 
     &-text {
       display: flex;
       flex-direction: column;
       align-items: flex-start;
+      transition: color 0.3s ease;
 
       span:first-child {
         font-size: 10px;
@@ -139,6 +143,24 @@
       span:last-child {
         font-size: 16px;
         line-height: 150%;
+      }
+    }
+
+    &-img path {
+      transition: fill 0.3s ease;
+    }
+
+    &:hover {
+      background-color: $color-bg-container;
+      color: $color-text-light;
+      border-color: $color-bg-container;
+
+      .app__btn-text {
+        color: $color-text-light;
+      }
+
+      .app__btn-img path {
+        fill: $color-text-light;
       }
     }
   }
@@ -250,11 +272,28 @@
     display: flex;
     flex-direction: column;
     height: 100%;
+    overflow: hidden;
+
+    &__img-wrapper {
+      width: 310px;
+      height: 310px;
+      overflow: hidden;
+      border-radius: 40px;
+      flex-shrink: 0;
+    }
 
     &__img {
       width: 100%;
-      border-radius: 40px;
-      flex-shrink: 0;
+      height: 100%;
+      object-fit: cover;
+      transform: scale(1.05);
+      transform-origin: center center;
+      transition: transform 0.3s ease;
+      display: block;
+    }
+
+    &:hover .menu-card__img {
+      transform: scale(1);
     }
 
     &__content {

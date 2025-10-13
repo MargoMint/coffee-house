@@ -68,17 +68,19 @@ document.addEventListener('DOMContentLoaded', () => {
 
   function createCard(item) {
     return `
-      <div class="menu-card">
+    <div class="menu-card">
+      <div class="menu-card__img-wrapper">
         <img src="${item.image}" alt="${item.name}" class="menu-card__img" />
-        <div class="menu-card__content">
-          <div class="menu-card__text">
-            <h3 class="menu-card__title">${item.name}</h3>
-            <p class="menu-card__desc">${item.description}</p>
-          </div>
-          <span class="menu-card__price">${item.price}</span>
-        </div>
       </div>
-    `;
+      <div class="menu-card__content">
+        <div class="menu-card__text">
+          <h3 class="menu-card__title">${item.name}</h3>
+          <p class="menu-card__desc">${item.description}</p>
+        </div>
+        <span class="menu-card__price">${item.price}</span>
+      </div>
+    </div>
+  `;
   }
 });
 
