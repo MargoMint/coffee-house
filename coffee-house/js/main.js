@@ -1,7 +1,3 @@
-alert(
-  'Hi! I wasn’t able to finish the work completely. Could you please check it on the second-to-last or last day? I really appreciate your understanding and patience. Thank you so much 🙏🏻🙏🏻🙏🏻'
-);
-
 document.addEventListener('DOMContentLoaded', () => {
   const burger = document.querySelector('.header__burger');
   const mobileMenu = document.querySelector('.mobile-menu');
