@@ -38,6 +38,18 @@
       padding-left: 0;
     }
   }
+
+  .enjoy {
+    &__container {
+      padding: 60px 10px 0 16px;
+    }
+
+    &__title {
+      font-size: 42px;
+      line-height: 115%;
+      letter-spacing: 1.5px;
+    }
+  }
 }
 
 @media (max-width: 768px) {
@@ -84,18 +96,6 @@
   .container {
     max-width: 348px;
     gap: 40px;
-  }
-
-  .enjoy {
-    &__container {
-      padding: 60px 10px 0 16px;
-    }
-
-    &__title {
-      font-size: 42px;
-      line-height: 115%;
-      letter-spacing: 1.5px;
-    }
   }
 
   .app {
