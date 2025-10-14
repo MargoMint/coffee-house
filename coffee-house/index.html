@@ -1,11 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Coffee House</title>
-    <link rel="shortcut icon" href="icons/coffee-cup.svg" type="image/x-icon">
-    <link rel="stylesheet" href="css/style.min.css">
+    <link rel="shortcut icon" href="icons/coffee-cup.svg" type="image/x-icon" />
+    <link rel="stylesheet" href="css/style.min.css" />
   </head>
   <body class="page">
     <header class="header">
@@ -15,7 +15,7 @@
             src="icons/logo.svg"
             alt="Coffee House logo"
             class="header__logo"
-          >
+          />
         </a>
         <div class="header__burger"><span></span><span></span></div>
         <div class="mobile-menu">
@@ -39,7 +39,7 @@
                   src="icons/coffee-cup.svg"
                   alt="coffee-cup"
                   class="mobile-menu__img"
-              ></a>
+              /></a>
             </li>
           </ul>
         </div>
@@ -65,7 +65,7 @@
             src="icons/coffee-cup.svg"
             alt="coffee-cup"
             class="header__menu-img"
-          >
+          />
         </a>
       </div>
     </header>
@@ -75,7 +75,7 @@
         <div class="container">
           <div class="enjoy__video-wrapper">
             <video class="enjoy__video" autoplay muted loop playsinline>
-              <source src="video/main-bg-video.mp4" type="video/mp4">
+              <source src="video/main-bg-video.mp4" type="video/mp4" />
             </video>
             <div class="enjoy__container">
               <h1 class="enjoy__title">
@@ -89,7 +89,14 @@
                 favorite beverage.
               </p>
               <div>
-                <button class="button button-primary">Menu</button>
+                <a href="menu.html" class="button button-primary">
+                  <span class="button__text">Menu</span>
+                  <img
+                    src="icons/coffee-cup.svg"
+                    alt="Coffee icon"
+                    class="button__icon"
+                  />
+                </a>
               </div>
             </div>
           </div>
@@ -97,44 +104,43 @@
       </section>
 
       <section class="favorite" id="favorite">
-  <div class="container">
-    <h2 class="favorite__title title">
-      Choose your <span class="title-accent">favorite</span> coffee
-    </h2>
+        <div class="container">
+          <h2 class="favorite__title title">
+            Choose your <span class="title-accent">favorite</span> coffee
+          </h2>
 
-    <div class="favorite__slider">
-      <div class="slider">
-        <div class="slider__line"></div>
+          <div class="favorite__slider">
+            <div class="slider">
+              <div class="slider__line"></div>
 
-        <div class="slider__buttons">
-          <button class="slider__btn slider__btn_left" disabled>
-            <svg width="24" height="24" viewBox="0 0 24 24">
-              <path
-                d="M18.5 12H6M6 12L12 6M6 12L12 18"
-                stroke="#403F3D"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-              />
-            </svg>
-          </button>
-          <button class="slider__btn slider__btn_right">
-            <svg width="24" height="24" viewBox="0 0 24 24">
-              <path
-                d="M6 12H18.5M18.5 12L12.5 6M18.5 12L12.5 18"
-                stroke="#403F3D"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-              />
-            </svg>
-          </button>
+              <div class="slider__buttons">
+                <button class="slider__btn slider__btn_left" disabled>
+                  <svg width="24" height="24" viewBox="0 0 24 24">
+                    <path
+                      d="M18.5 12H6M6 12L12 6M6 12L12 18"
+                      stroke="#403F3D"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    />
+                  </svg>
+                </button>
+                <button class="slider__btn slider__btn_right">
+                  <svg width="24" height="24" viewBox="0 0 24 24">
+                    <path
+                      d="M6 12H18.5M18.5 12L12.5 6M18.5 12L12.5 18"
+                      stroke="#403F3D"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    />
+                  </svg>
+                </button>
+              </div>
+
+              <div class="slider__controls"></div>
+            </div>
+          </div>
         </div>
-
-        <div class="slider__controls"></div>
-      </div>
-    </div>
-  </div>
-</section>
-
+      </section>
 
       <section class="about" id="about">
         <div class="container">
@@ -147,16 +153,16 @@
           <div class="about__galary">
             <ul class="about__galary-wrapper">
               <li class="about__img">
-                <img src="img/about/about-1.jpg" alt="about image 1">
+                <img src="img/about/about-1.jpg" alt="about image 1" />
               </li>
               <li class="about__img">
-                <img src="img/about/about-2.jpg" alt="about image 2">
+                <img src="img/about/about-2.jpg" alt="about image 2" />
               </li>
               <li class="about__img">
-                <img src="img/about/about-3.jpg" alt="about image 3">
+                <img src="img/about/about-3.jpg" alt="about image 3" />
               </li>
               <li class="about__img">
-                <img src="img/about/about-4.jpg" alt="about image 4">
+                <img src="img/about/about-4.jpg" alt="about image 4" />
               </li>
             </ul>
           </div>
@@ -241,7 +247,7 @@
             </div>
           </div>
           <div class="app__img">
-            <img src="img/mobile-screens.png" alt="mobile-screens">
+            <img src="img/mobile-screens.png" alt="mobile-screens" />
           </div>
         </div>
       </section>
@@ -357,7 +363,7 @@
                   src="icons/contacts/location.svg"
                   alt="location"
                   class="footer__contacts-icon"
-                >
+                />
                 <span>8558 Green Rd., LA</span>
               </a>
             </li>
@@ -368,7 +374,7 @@
                   src="icons/contacts/phone.svg"
                   alt="phone"
                   class="footer__contacts-icon"
-                >
+                />
                 <span>+1 (603) 555-0123</span>
               </a>
             </li>
@@ -379,7 +385,7 @@
                   src="icons/contacts/clock.svg"
                   alt="working hours"
                   class="footer__contacts-icon"
-                >
+                />
                 <span>Mon-Sat: 9:00 AM – 23:00 PM</span>
               </a>
             </li>
