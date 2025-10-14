@@ -14,6 +14,11 @@
     gap: 40px;
   }
 
+  &__item {
+    border-bottom: 2px solid transparent;
+    transition: all 0.3s ease;
+  }
+
   &__menu {
     background-color: transparent;
     border: none;

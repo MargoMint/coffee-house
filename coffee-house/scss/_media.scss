@@ -226,6 +226,10 @@
     border-bottom: 2px solid $color-text-dark;
   }
 
+  .header__item:hover {
+    border-bottom: 2px solid $color-text-dark;
+  }
+
   .about__img img:hover {
     transform: scale(1);
   }
@@ -299,6 +303,10 @@
   }
 
   .header__menu:hover {
+    border-bottom: 2px solid transparent;
+  }
+
+  .header__item:hover {
     border-bottom: 2px solid transparent;
   }
 
