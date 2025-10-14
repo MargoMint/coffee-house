@@ -27,14 +27,6 @@
     cursor: pointer;
     border: 1px solid $color-bg-container;
     transition: all 0.3s;
-
-    &:hover {
-      background: $color-bg-container;
-      svg path {
-        stroke: $color-text-light;
-        transition: stroke 0.3s ease;
-      }
-    }
   }
 
   &__line {

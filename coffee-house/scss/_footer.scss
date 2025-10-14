@@ -29,15 +29,6 @@
       border-radius: 50%;
       background-color: transparent;
       transition: all 0.3s ease;
-
-      &:hover {
-        background-color: $color-text-light;
-
-        .footer__offer-img path {
-          stroke: $color-text-dark;
-          transition: stroke 0.3s ease;
-        }
-      }
     }
     &-img {
       width: 24px;
@@ -83,9 +74,6 @@
       border-bottom: 2px solid transparent;
       padding-bottom: 4px;
       transition: border-color 0.3s ease;
-      &:hover {
-        border-bottom-color: $color-text-light;
-      }
     }
 
     &-icon {

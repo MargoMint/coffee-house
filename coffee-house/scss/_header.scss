@@ -23,10 +23,6 @@
     gap: 8px;
     transition: all 0.3s ease;
 
-    &:hover {
-      border-bottom: 2px solid $color-text-dark;
-    }
-
     &--active {
       border-bottom: 2px solid $color-text-dark;
     }

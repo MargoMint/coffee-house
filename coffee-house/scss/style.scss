@@ -87,28 +87,11 @@ section {
     transition: all 0.3s ease;
   }
 
-  &-primary:hover {
-    .button__text {
-      transform: translateX(-8px);
-    }
-
-    .button__icon {
-      display: flex;
-      opacity: 1;
-      transform: translateX(0);
-    }
-  }
-
   &-secondary {
     border-color: $color-bg-container;
     background-color: transparent;
     padding: 10px 78px;
     transition: all 0.3s ease;
-
-    &:hover {
-      color: $color-text-light;
-      background-color: $color-bg-container;
-    }
   }
 }
 

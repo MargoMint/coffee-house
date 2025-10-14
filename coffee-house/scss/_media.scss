@@ -203,3 +203,153 @@
     }
   }
 }
+
+@media (hover: hover) {
+  .button-primary:hover {
+    .button__text {
+      transform: translateX(-8px);
+    }
+
+    .button__icon {
+      display: flex;
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+
+  .button-secondary:hover {
+    color: $color-text-light;
+    background-color: $color-bg-container;
+  }
+
+  .header__menu:hover {
+    border-bottom: 2px solid $color-text-dark;
+  }
+
+  .about__img img:hover {
+    transform: scale(1);
+  }
+
+  .app__btn:hover {
+    background-color: $color-bg-container;
+    color: $color-text-light;
+    border-color: $color-bg-container;
+
+    .app__btn-text {
+      color: $color-text-light;
+    }
+
+    .app__btn-img path {
+      fill: $color-text-light;
+    }
+  }
+
+  .menu__tab:hover {
+    background-color: $color-bg-container;
+    color: $color-text-light;
+  }
+
+  .menu-card:hover .menu-card__img {
+    transform: scale(1);
+  }
+
+  .load-more:hover {
+    background-color: $color-bg-container;
+  }
+
+  .footer__contacts-link:hover {
+    border-bottom-color: $color-text-light;
+  }
+
+  .footer__offer-item:hover {
+    background-color: $color-text-light;
+
+    .footer__offer-img path {
+      stroke: $color-text-dark;
+      transition: stroke 0.3s ease;
+    }
+  }
+
+  .slider__btn:hover {
+    background: $color-bg-container;
+
+    svg path {
+      stroke: $color-text-light;
+      transition: stroke 0.3s ease;
+    }
+  }
+}
+
+@media (hover: none) {
+  .button-primary:hover {
+    .button__text {
+      transform: none;
+    }
+
+    .button__icon {
+      display: none;
+      opacity: 0;
+      transform: translateX(8px);
+    }
+  }
+
+  .button-secondary:hover {
+    color: inherit;
+    background-color: transparent;
+  }
+
+  .header__menu:hover {
+    border-bottom: 2px solid transparent;
+  }
+
+  .about__img img:hover {
+    transform: scale(1.05);
+  }
+
+  .app__btn:hover {
+    background-color: transparent;
+    color: $color-text-dark;
+    border-color: $color-border-dark;
+
+    .app__btn-text {
+      color: $color-text-dark;
+    }
+
+    .app__btn-img path {
+      fill: $color-text-dark;
+    }
+  }
+
+  .menu__tab:hover {
+    background-color: transparent;
+    color: $color-text-dark;
+  }
+
+  .menu-card:hover .menu-card__img {
+    transform: scale(1.05);
+  }
+
+  .load-more:hover {
+    background-color: transparent;
+  }
+
+  .footer__contacts-link:hover {
+    border-bottom-color: transparent;
+  }
+
+  .footer__offer-item:hover {
+    background-color: transparent;
+
+    .footer__offer-img path {
+      stroke: $color-text-light;
+    }
+  }
+
+  .slider__btn:hover {
+    background: transparent;
+
+    svg path {
+      stroke: $color-bg-container;
+    }
+  }
+}
