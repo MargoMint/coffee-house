@@ -2,9 +2,16 @@ document.addEventListener('DOMContentLoaded', () => {
   const menuLink = document.getElementById('menu-link');
   const cardsSection = document.querySelector('.menu__cards');
   const loadMoreButton = document.querySelector('.load-more');
+  const lastMobileMenuItem = document.querySelector(
+    '.mobile-menu__item:last-child'
+  );
 
   if (window.location.pathname.includes('menu.html') && menuLink) {
     menuLink.classList.add('header__menu--active');
+    if (lastMobileMenuItem) {
+      lastMobileMenuItem.style.pointerEvents = 'none';
+      lastMobileMenuItem.style.cursor = 'default';
+    }
   }
 
   setupTabs();

@@ -222,11 +222,9 @@
     background-color: $color-bg-container;
   }
 
-  .header__menu:hover {
-    border-bottom: 2px solid $color-text-dark;
-  }
-
-  .header__item:hover {
+  .header__menu:hover,
+  .header__item:hover,
+  .mobile-menu__item:hover {
     border-bottom: 2px solid $color-text-dark;
   }
 
@@ -302,11 +300,9 @@
     background-color: transparent;
   }
 
-  .header__menu:hover {
-    border-bottom: 2px solid transparent;
-  }
-
-  .header__item:hover {
+  .header__menu:hover,
+  .header__item:hover,
+  .mobile-menu__item:hover {
     border-bottom: 2px solid transparent;
   }
 
