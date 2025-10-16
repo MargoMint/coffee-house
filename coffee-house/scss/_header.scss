@@ -29,6 +29,8 @@
     transition: all 0.3s ease;
 
     &--active {
+      pointer-events: none;
+      cursor: default;
       border-bottom: 2px solid $color-text-dark;
     }
   }

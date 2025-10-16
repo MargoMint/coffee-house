@@ -215,6 +215,8 @@
     transition: all 0.3s ease;
 
     &--active {
+      pointer-events: none;
+      cursor: default;
       background-color: $color-bg-container;
       color: $color-text-light;
 
