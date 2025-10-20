@@ -1,18 +1,18 @@
-const products = {
+import type { Product, SliderItem } from './types';
+
+export const products: Record<string, Product[]> = {
   coffee: [
     {
       id: 1,
       name: 'Irish coffee',
-      description:
-        'Fragrant black coffee with Jameson Irish whiskey and whipped milk',
+      description: 'Fragrant black coffee with Jameson Irish whiskey and whipped milk',
       price: '$7.00',
       image: 'img/products/coffee/coffee-1.jpg',
     },
     {
       id: 2,
       name: 'Kahlua coffee',
-      description:
-        'Classic coffee with milk and Kahlua liqueur under a cap of frothed milk',
+      description: 'Classic coffee with milk and Kahlua liqueur under a cap of frothed milk',
       price: '$7.00',
       image: 'img/products/coffee/coffee-2.jpg',
     },
@@ -40,8 +40,7 @@ const products = {
     {
       id: 6,
       name: 'Latte',
-      description:
-        'Espresso coffee with the addition of steamed milk and dense milk foam',
+      description: 'Espresso coffee with the addition of steamed milk and dense milk foam',
       price: '$5.50',
       image: 'img/products/coffee/coffee-6.jpg',
     },
@@ -86,8 +85,7 @@ const products = {
     {
       id: 4,
       name: 'Sea buckthorn',
-      description:
-        'Toning sweet black tea with sea buckthorn, fresh thyme and cinnamon',
+      description: 'Toning sweet black tea with sea buckthorn, fresh thyme and cinnamon',
       price: '$5.50',
       image: 'img/products/tea/tea-4.jpg',
     },
@@ -96,8 +94,7 @@ const products = {
     {
       id: 1,
       name: 'Marble cheesecake',
-      description:
-        'Philadelphia cheese with lemon zest on a light sponge cake and red currant jam',
+      description: 'Philadelphia cheese with lemon zest on a light sponge cake and red currant jam',
       price: '$3.50',
       image: 'img/products/dessert/dessert-1.jpg',
     },
@@ -119,8 +116,7 @@ const products = {
     {
       id: 4,
       name: 'Creme brulee',
-      description:
-        'Delicate creamy dessert in a caramel basket with wild berries',
+      description: 'Delicate creamy dessert in a caramel basket with wild berries',
       price: '$4.00',
       image: 'img/products/dessert/dessert-4.jpg',
     },
@@ -141,23 +137,21 @@ const products = {
     {
       id: 7,
       name: 'Chocolate cake',
-      description:
-        'Cake with hot chocolate filling and nuts with dried apricots',
+      description: 'Cake with hot chocolate filling and nuts with dried apricots',
       price: '$5.50',
       image: 'img/products/dessert/dessert-7.jpg',
     },
     {
       id: 8,
       name: 'Black forest',
-      description:
-        'A combination of thin sponge cake with cherry jam and light chocolate mousse',
+      description: 'A combination of thin sponge cake with cherry jam and light chocolate mousse',
       price: '$6.50',
       image: 'img/products/dessert/dessert-8.jpg',
     },
   ],
 };
 
-const sliderData = [
+export const sliderData: SliderItem[] = [
   {
     img: 'img/slider/coffee-slider-1.png',
     title: 'S’mores Frappuccino',

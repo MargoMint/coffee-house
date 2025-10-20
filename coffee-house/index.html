@@ -1,21 +1,17 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Coffee House</title>
     <link rel="shortcut icon" href="icons/coffee-cup.svg" type="image/x-icon" />
-    <link rel="stylesheet" href="css/style.min.css" />
+    <link rel="stylesheet" href="src/css/style.min.css" />
   </head>
   <body class="page">
     <header class="header">
       <div class="container header__container">
         <a href="index.html" class="header__logo-link">
-          <img
-            src="icons/logo.svg"
-            alt="Coffee House logo"
-            class="header__logo"
-          />
+          <img src="icons/logo.svg" alt="Coffee House logo" class="header__logo" />
         </a>
         <div class="header__burger"><span></span><span></span></div>
         <div class="mobile-menu">
@@ -35,10 +31,7 @@
             <li class="mobile-menu__item">
               <a href="menu.html" class="mobile-menu__link">
                 <span>Menu</span>
-                <img
-                  src="icons/coffee-cup.svg"
-                  alt="coffee-cup"
-                  class="mobile-menu__img"
+                <img src="icons/coffee-cup.svg" alt="coffee-cup" class="mobile-menu__img"
               /></a>
             </li>
           </ul>
@@ -61,11 +54,7 @@
         </nav>
         <a href="menu.html" class="header__menu">
           <span class="header__menu-text link">Menu</span>
-          <img
-            src="icons/coffee-cup.svg"
-            alt="coffee-cup"
-            class="header__menu-img"
-          />
+          <img src="icons/coffee-cup.svg" alt="coffee-cup" class="header__menu-img" />
         </a>
       </div>
     </header>
@@ -75,27 +64,21 @@
         <div class="container">
           <div class="enjoy__video-wrapper">
             <video class="enjoy__video" autoplay muted loop playsinline>
-              <source src="video/main-bg-video.mp4" type="video/mp4" />
+              <source src="/video/main-bg-video.mp4" type="video/mp4" />
             </video>
             <div class="enjoy__container">
               <h1 class="enjoy__title">
-                <span class="title-accent">Enjoy</span> premium coffee at our
-                charming cafe
+                <span class="title-accent">Enjoy</span> premium coffee at our charming cafe
               </h1>
               <p class="enjoy__description">
-                With its inviting atmosphere and delicious coffee options, the
-                Coffee House Resource is a popular destination for coffee lovers
-                and those seeking a warm and inviting space to enjoy their
-                favorite beverage.
+                With its inviting atmosphere and delicious coffee options, the Coffee House Resource
+                is a popular destination for coffee lovers and those seeking a warm and inviting
+                space to enjoy their favorite beverage.
               </p>
               <div>
                 <a href="menu.html" class="button button-primary">
                   <span class="button__text">Menu</span>
-                  <img
-                    src="icons/coffee-cup.svg"
-                    alt="Coffee icon"
-                    class="button__icon"
-                  />
+                  <img src="icons/coffee-cup.svg" alt="Coffee icon" class="button__icon" />
                 </a>
               </div>
             </div>
@@ -147,8 +130,8 @@
           <h2 class="about__title title">
             Resource is
             <span class="title-accent">the perfect and cozy place</span>
-            where you can enjoy a variety of hot beverages, relax, catch up with
-            friends, or get some work done.
+            where you can enjoy a variety of hot beverages, relax, catch up with friends, or get
+            some work done.
           </h2>
           <div class="about__galary">
             <ul class="about__galary-wrapper">
@@ -173,12 +156,11 @@
         <div class="container app__container">
           <div class="app__content">
             <h2 class="app__title title">
-              <span class="title-accent">Download</span> our apps to start
-              ordering
+              <span class="title-accent">Download</span> our apps to start ordering
             </h2>
             <p class="app__descr">
-              Download the Resource app today and experience the comfort of
-              ordering your favorite coffee from wherever you are
+              Download the Resource app today and experience the comfort of ordering your favorite
+              coffee from wherever you are
             </p>
             <div class="app__btns">
               <a
@@ -204,9 +186,7 @@
                     fill="#403F3D"
                   />
                 </svg>
-                <div class="app__btn-text">
-                  <span>Available on the</span><span>App Store</span>
-                </div>
+                <div class="app__btn-text"><span>Available on the</span><span>App Store</span></div>
               </a>
 
               <a
@@ -240,9 +220,7 @@
                     fill="#403F3D"
                   />
                 </svg>
-                <div class="app__btn-text">
-                  <span>Available on</span><span>Google Play</span>
-                </div>
+                <div class="app__btn-text"><span>Available on</span><span>Google Play</span></div>
               </a>
             </div>
           </div>
@@ -370,11 +348,7 @@
 
             <li class="footer__contacts-item">
               <a href="tel:+16035550123" class="footer__contacts-link">
-                <img
-                  src="icons/contacts/phone.svg"
-                  alt="phone"
-                  class="footer__contacts-icon"
-                />
+                <img src="icons/contacts/phone.svg" alt="phone" class="footer__contacts-icon" />
                 <span>+1 (603) 555-0123</span>
               </a>
             </li>
@@ -393,8 +367,6 @@
         </div>
       </div>
     </footer>
-    <script src="js/main.js" defer></script>
-    <script src="js/products.js" defer></script>
-    <script src="js/home.js" defer></script>
+    <script type="module" src="/src/js/index-home.ts"></script>
   </body>
 </html>

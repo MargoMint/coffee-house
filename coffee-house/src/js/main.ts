@@ -4,7 +4,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const menuItems = document.querySelectorAll('.mobile-menu__item a');
   if (!burger || !mobileMenu || !menuItems.length) return;
 
-  const closeMenu = () => {
+  const closeMenu = (): void => {
     burger.classList.remove('active');
     mobileMenu.classList.remove('open');
 

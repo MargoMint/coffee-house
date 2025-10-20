@@ -1,4 +1,6 @@
-const categoryConfig = {
+import type { ProductCategory, CategoryConfigItem } from './types';
+
+export const categoryConfig: Record<ProductCategory, CategoryConfigItem> = {
   coffee: {
     sizes: [
       { label: 'S', volume: '200 ml', price: 0 },

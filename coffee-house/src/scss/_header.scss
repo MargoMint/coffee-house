@@ -55,7 +55,10 @@
       background-color: $color-text-dark;
       border-radius: 2px;
       transform: translateX(-50%);
-      transition: transform 0.3s ease, top 0.3s ease, bottom 0.3s ease;
+      transition:
+        transform 0.3s ease,
+        top 0.3s ease,
+        bottom 0.3s ease;
 
       &:first-child {
         top: 16px;
