@@ -129,6 +129,8 @@ section {
 }
 
 .error-message,
-.notification {
+.loader {
   color: $color-text-dark;
+  text-align: center;
+  margin-top: 30px;
 }

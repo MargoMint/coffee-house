@@ -43,3 +43,20 @@ export async function getProductById(id: number): Promise<Product> {
     throw error;
   }
 }
+
+export async function getFavorites(): Promise<Product[]> {
+  try {
+    const response = await fetch(`${BASE_URL}/products/favorites`);
+    if (!response.ok) {
+      throw new Error('Failed to fetch favorite products');
+    }
+    const json: ApiResponse = await response.json();
+    if (!json.data) {
+      throw new Error('Favorites data missing');
+    }
+    return json.data;
+  } catch (error) {
+    console.error('getFavorites error:', error);
+    throw error;
+  }
+}

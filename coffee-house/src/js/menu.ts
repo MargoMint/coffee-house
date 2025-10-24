@@ -1,6 +1,7 @@
 import { categoryConfig } from './category';
 import type { Product, ProductCategory, CategoryConfigItem, SizeOption } from './types';
 import { getProducts, getProductById } from './api';
+import { showError } from '../utils/show-error';
 
 document.addEventListener('DOMContentLoaded', () => {
   const menuLink = document.getElementById('menu-link');
@@ -76,8 +77,7 @@ async function renderCards(category: ProductCategory): Promise<void> {
     }
   } catch (err) {
     console.error('renderCards error:', err);
-    container.innerHTML =
-      '<p class="error-message">Something went wrong. Please, refresh the page</p>';
+    showError(container);
     const loadMoreButtonLocal = document.querySelector<HTMLButtonElement>('.load-more');
     if (loadMoreButtonLocal) loadMoreButtonLocal.classList.add('hidden');
   }
@@ -102,10 +102,7 @@ function setupLoadMore(button: HTMLButtonElement | null, container: HTMLElement)
       button.classList.add('hidden');
     } catch (e) {
       console.error('load more error:', e);
-      container.insertAdjacentHTML(
-        'beforeend',
-        '<p class="error-message">Something went wrong. Please, refresh the page</p>'
-      );
+      showError(container);
     } finally {
       loaderEl.remove();
     }
