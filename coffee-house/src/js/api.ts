@@ -1,0 +1,45 @@
+import type { Product, ProductCategory } from './types';
+
+const BASE_URL = 'https://6kt29kkeub.execute-api.eu-central-1.amazonaws.com';
+
+interface ApiResponse {
+  data?: Product[];
+  message?: string;
+  error?: string;
+}
+
+export async function getProducts(category?: ProductCategory): Promise<Product[]> {
+  try {
+    const response = await fetch(`${BASE_URL}/products`);
+    if (!response.ok) {
+      throw new Error('Failed to fetch products');
+    }
+
+    const json: ApiResponse = await response.json();
+
+    const data = Array.isArray(json.data) ? json.data : [];
+
+    return category ? data.filter((p) => p.category === category) : data;
+  } catch (error) {
+    console.error('getProducts error:', error);
+    throw error;
+  }
+}
+
+export async function getProductById(id: number): Promise<Product> {
+  try {
+    const response = await fetch(`${BASE_URL}/products/${id}`);
+    if (!response.ok) {
+      throw new Error('Failed to fetch product');
+    }
+
+    const json: { data?: Product } = await response.json();
+    if (!json.data) {
+      throw new Error('Product data is missing in response');
+    }
+    return json.data;
+  } catch (error) {
+    console.error('getProductById error:', error);
+    throw error;
+  }
+}

@@ -3,7 +3,8 @@ export interface Product {
   name: string;
   description: string;
   price: string;
-  image: string;
+  discountPrice: string | null;
+  category: ProductCategory;
 }
 
 export type ProductCategory = 'coffee' | 'tea' | 'dessert';

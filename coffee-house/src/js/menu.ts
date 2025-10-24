@@ -1,11 +1,11 @@
 import { categoryConfig } from './category';
 import type { Product, ProductCategory, CategoryConfigItem, SizeOption } from './types';
-import { products } from './products';
+import { getProducts, getProductById } from './api';
 
-document.addEventListener('DOMContentLoaded', (): void => {
+document.addEventListener('DOMContentLoaded', () => {
   const menuLink = document.getElementById('menu-link');
   const cardsSection = document.querySelector<HTMLElement>('.menu__cards');
-  const loadMoreButton = document.querySelector<HTMLElement>('.load-more');
+  const loadMoreButton = document.querySelector<HTMLButtonElement>('.load-more');
   const lastMobileMenuItem = document.querySelector<HTMLElement>('.mobile-menu__item:last-child');
 
   if (window.location.pathname.includes('menu.html') && menuLink) {
@@ -16,226 +16,283 @@ document.addEventListener('DOMContentLoaded', (): void => {
     }
   }
 
-  if (cardsSection) {
-    setupTabs();
-    cardsSection.classList.add('menu-section--active');
-    renderCards(products.coffee);
-  }
+  if (!cardsSection) return;
 
-  window.addEventListener('resize', (): void => {
-    const activeTab = document.querySelector<HTMLElement>('.menu__tab--active');
-    if (activeTab && cardsSection) {
-      const category = activeTab.id as ProductCategory;
-      renderCards(products[category]);
-    }
+  setupTabs();
+  setDefaultActiveTab('coffee');
+  renderCards('coffee');
+  setupLoadMore(loadMoreButton, cardsSection);
+  setupModalListeners();
+});
+
+function setDefaultActiveTab(defaultCategory: ProductCategory): void {
+  const defaultTab = document.getElementById(defaultCategory);
+  if (!defaultTab) return;
+  const tabs = document.querySelectorAll<HTMLElement>('.menu__tab');
+  tabs.forEach((t) => t.classList.remove('menu__tab--active'));
+  defaultTab.classList.add('menu__tab--active');
+}
+
+function setupTabs(): void {
+  const tabs = document.querySelectorAll<HTMLElement>('.menu__tab');
+
+  tabs.forEach((tab) => {
+    tab.addEventListener('click', () => {
+      tabs.forEach((t) => t.classList.remove('menu__tab--active'));
+      tab.classList.add('menu__tab--active');
+
+      const categoryId = (tab.id as ProductCategory) || 'coffee';
+      renderCards(categoryId);
+    });
   });
+}
 
-  if (loadMoreButton && cardsSection) {
-    loadMoreButton.addEventListener('click', (): void => {
-      const activeTab = document.querySelector<HTMLElement>('.menu__tab--active');
-      if (!activeTab) return;
+async function renderCards(category: ProductCategory): Promise<void> {
+  const container = document.querySelector<HTMLElement>('.menu__cards');
+  const loadMoreButton = document.querySelector<HTMLButtonElement>('.load-more');
 
-      const category = activeTab.id as ProductCategory;
-      const productsArray = products[category];
+  if (!container) return;
 
-      const remainingCards = productsArray.slice(4);
-      const moreHTML = remainingCards.map(createCard).join('');
-      cardsSection.insertAdjacentHTML('beforeend', moreHTML);
-
-      loadMoreButton.classList.add('hidden');
-    });
-  }
-
-  function setupTabs(): void {
-    const tabs = document.querySelectorAll<HTMLElement>('.menu__tab');
-
-    tabs.forEach((tab) => {
-      tab.addEventListener('click', (): void => {
-        tabs.forEach((t) => t.classList.remove('menu__tab--active'));
-        tab.classList.add('menu__tab--active');
-
-        const categoryId = tab.id as ProductCategory;
-        if (cardsSection) {
-          cardsSection.classList.add('menu-section--active');
-          renderCards(products[categoryId]);
-        }
-      });
-    });
-  }
-
-  function renderCards(productsArray: Product[]): void {
-    const container = document.querySelector<HTMLElement>('.menu__cards');
-    const loadMoreButton = document.querySelector<HTMLElement>('.load-more');
-
-    if (!container || !loadMoreButton) return;
+  try {
+    const productsArray = await getProducts(category);
+    const products = Array.isArray(productsArray) ? productsArray : [];
 
     container.innerHTML = '';
-    loadMoreButton.classList.add('hidden');
 
     const isMobile = window.innerWidth <= 768;
-    const maxInitialCards = isMobile ? 4 : productsArray.length;
-    const visibleProducts = productsArray.slice(0, maxInitialCards);
+    const maxInitialCards = isMobile ? 4 : products.length;
+    const visibleProducts = products.slice(0, maxInitialCards);
 
     container.innerHTML = visibleProducts.map(createCard).join('');
 
-    if (isMobile && productsArray.length > 4) {
-      loadMoreButton.classList.remove('hidden');
+    if (loadMoreButton) {
+      if (isMobile && products.length > maxInitialCards) {
+        loadMoreButton.classList.remove('hidden');
+        loadMoreButton.dataset.category = category;
+      } else {
+        loadMoreButton.classList.add('hidden');
+        delete loadMoreButton.dataset.category;
+      }
     }
+  } catch (err) {
+    console.error('renderCards error:', err);
+    container.innerHTML =
+      '<p class="error-message">Something went wrong. Please, refresh the page</p>';
+    const loadMoreButtonLocal = document.querySelector<HTMLButtonElement>('.load-more');
+    if (loadMoreButtonLocal) loadMoreButtonLocal.classList.add('hidden');
   }
+}
 
-  function createCard(item: Product): string {
-    return `
-      <div class="menu-card">
-        <div class="menu-card__img-wrapper">
-          <img src="${item.image}" alt="${item.name}" class="menu-card__img" />
-        </div>
-        <div class="menu-card__content">
-          <div class="menu-card__text">
-            <h3 class="menu-card__title">${item.name}</h3>
-            <p class="menu-card__desc">${item.description}</p>
-          </div>
-          <span class="menu-card__price">${item.price}</span>
-        </div>
+function setupLoadMore(button: HTMLButtonElement | null, container: HTMLElement): void {
+  if (!button) return;
+
+  button.addEventListener('click', async () => {
+    const category = button.dataset.category as ProductCategory | undefined;
+    if (!category) return;
+
+    const loaderEl = document.createElement('div');
+    loaderEl.className = 'loader loader--small';
+    button.insertAdjacentElement('afterend', loaderEl);
+
+    try {
+      const productsArray = await getProducts(category);
+      const products = Array.isArray(productsArray) ? productsArray : [];
+      const remainingCards = products.slice(4);
+      container.insertAdjacentHTML('beforeend', remainingCards.map(createCard).join(''));
+      button.classList.add('hidden');
+    } catch (e) {
+      console.error('load more error:', e);
+      container.insertAdjacentHTML(
+        'beforeend',
+        '<p class="error-message">Something went wrong. Please, refresh the page</p>'
+      );
+    } finally {
+      loaderEl.remove();
+    }
+  });
+}
+
+function createCard(item: Product): string {
+  const category = item.category || 'coffee';
+  const imgPath = `/img/products/${category}/${item.id}.jpg`;
+  const priceText = item.discountPrice
+    ? `<span class="menu-card__price--old">${item.price}</span>
+        <span class="menu-card__price--discount">${item.discountPrice}</span>`
+    : `<span class="menu-card__price">${item.price}</span>`;
+
+  return `
+    <div class="menu-card" data-id="${item.id}">
+      <div class="menu-card__img-wrapper">
+        <img src="${imgPath}" alt="${item.name}" class="menu-card__img" />
       </div>
-    `;
+      <div class="menu-card__content">
+        <div class="menu-card__text">
+          <h3 class="menu-card__title">${item.name}</h3>
+          <p class="menu-card__desc">${item.description}</p>
+        </div>
+        <div class="menu-card__price">${priceText}</div>
+      </div>
+    </div>
+  `;
+}
+
+function setupModalListeners(): void {
+  const overlay = document.querySelector<HTMLElement>('.overlay');
+  const modal = document.querySelector<HTMLElement>('.modal');
+  const modalContainer = document.querySelector<HTMLElement>('.modal__container');
+
+  if (!overlay || !modal || !modalContainer) return;
+
+  document.addEventListener('click', async (e: MouseEvent) => {
+    const target = e.target as HTMLElement;
+    if (target.closest('.modal__content') || target.closest('.modal')) return;
+
+    const card = target.closest('.menu-card') as HTMLElement | null;
+    if (!card) return;
+
+    const idStr = card.dataset.id;
+    const productId = idStr ? Number(idStr) : NaN;
+    if (Number.isNaN(productId)) return;
+
+    await openModalById(productId, overlay, modal, modalContainer);
+  });
+
+  overlay.addEventListener('click', () => closeModal(modal, overlay));
+
+  modal.addEventListener('click', (e: MouseEvent) => {
+    const target = e.target as HTMLElement;
+    if (target.classList.contains('modal__close') || target.closest('.modal__close')) {
+      closeModal(modal, overlay);
+    }
+  });
+
+  document.addEventListener('keydown', (e: KeyboardEvent) => {
+    if (e.key === 'Escape') closeModal(modal, overlay);
+  });
+}
+
+async function openModalById(
+  productId: number,
+  overlay: HTMLElement,
+  modal: HTMLElement,
+  modalContainer: HTMLElement
+): Promise<void> {
+  overlay.classList.add('active');
+  modal.classList.add('active');
+  document.body.style.overflow = 'hidden';
+
+  try {
+    const product = await getProductById(productId);
+    if (!product) throw new Error('Product not found');
+    renderModal(product, modalContainer);
+  } catch (err) {
+    console.error('openModalById error:', err);
+    closeModal(modal, overlay);
   }
-});
+}
 
-const overlay = document.querySelector<HTMLElement>('.overlay');
-const modal = document.querySelector<HTMLElement>('.modal');
-const modalContainer = document.querySelector<HTMLElement>('.modal__container');
-
-document.addEventListener('click', (e: MouseEvent): void => {
-  const target = e.target as HTMLElement;
-  const card = target.closest('.menu-card') as HTMLElement | null;
-  if (!card || !modalContainer) return;
-
-  const title = card.querySelector<HTMLElement>('.menu-card__title')?.textContent;
-  if (!title) return;
-
+function renderModal(product: Product, modalContainer: HTMLElement): void {
   const activeTab = document.querySelector<HTMLElement>('.menu__tab--active');
-  if (!activeTab) return;
+  const category = (activeTab?.id as ProductCategory) || 'coffee';
+  const imgPath = `/img/products/${category}/${product.id}.jpg`;
 
-  const category = activeTab.id as ProductCategory;
-  const product = products[category].find((p) => p.name === title);
-  if (product) openModal(product);
-});
-
-overlay?.addEventListener('click', closeModal);
-modal?.addEventListener('click', (e: MouseEvent): void => {
-  const target = e.target as HTMLElement;
-  if (target.classList.contains('modal__close')) closeModal();
-});
-
-function openModal(product: Product): void {
-  const activeTab = document.querySelector<HTMLElement>('.menu__tab--active');
-  if (!activeTab || !modalContainer) return;
-
-  const category = activeTab.id as ProductCategory;
   const config: CategoryConfigItem = categoryConfig[category];
 
-  const sizeButtonsHTML = config.sizes
+  const sizeButtonsHTML = (config.sizes || [])
     .map(
       (size: SizeOption, i: number) => `
-        <button class="size-btn ${i === 0 ? 'active' : ''}" data-price="${size.price}">
-          <span class="size-btn__label">${size.label}</span>
-          <span class="size-btn__volume">${size.volume}</span>
-        </button>
-      `
+      <button class="size-btn ${i === 0 ? 'active' : ''}" data-price="${size.price}">
+        <span class="size-btn__label">${size.label}</span>
+        <span class="size-btn__volume">${size.volume}</span>
+      </button>`
     )
     .join('');
 
-  const addButtonsHTML = config.additives
+  const addButtonsHTML = (config.additives || [])
     .map(
       (additive, i) => `
-        <button class="add-btn" data-price="0.5">
-          <span class="add-btn__number">${i + 1}</span>
-          <span class="add-btn__additives">${additive}</span>
-        </button>
-      `
+      <button class="add-btn" data-price="0.5">
+        <span class="add-btn__number">${i + 1}</span>
+        <span class="add-btn__additives">${additive}</span>
+      </button>`
     )
     .join('');
 
-  modalContainer.innerHTML = `
-    <div class="modal__content">
-      <img src="${product.image}" alt="${product.name}" class="modal__img" />
-      <div class="modal__info">
-        <div class="modal__header">
-          <h3 class="modal__title">${product.name}</h3>
-          <p class="modal__desc">${product.description}</p>
-        </div>
+  const priceText = product.price;
 
+  modalContainer.innerHTML = `
+    <div class="modal__content" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+      <img src="${imgPath}" alt="${product.name}" class="modal__img" />
+      <div class="modal__info">
+        <h3 id="modal-title" class="modal__title">${product.name}</h3>
+        <p class="modal__desc">${product.description}</p>
         <div class="modal__sizes">
           <p class="modal__subtitle">Size</p>
           <div class="modal__btns">${sizeButtonsHTML}</div>
         </div>
-
         <div class="modal__additives">
           <p class="modal__subtitle">Additives</p>
           <div class="modal__btns">${addButtonsHTML}</div>
         </div>
-
         <div class="modal__total">
           <p class="modal__total-text">Total:</p>
-          <span class="modal__price">${product.price}</span>
+          <span class="modal__price">${priceText}</span>
         </div>
-
         <div class="modal__alert">
           <img src="icons/info.svg" alt="Info" class="modal__alert-img"/>
-          <p class="modal__alert-text">The cost is not final. Download our mobile app to see the final price and place your order. Earn loyalty points and enjoy your favorite coffee with up to 20% discount.</p>
+          <p class="modal__alert-text">
+            The cost is not final. Download our mobile app to see the final price and place your order.
+          </p>
         </div>
-
-        <button class="button button-secondary modal__close">Close</button>
+        <button class="button button-secondary modal__close" type="button">Close</button>
       </div>
     </div>
   `;
 
-  document.body.style.overflow = 'hidden';
-  overlay?.classList.add('active');
-  modal?.classList.add('active');
-
-  setupPriceLogic(product);
+  setupPriceLogic(product, modalContainer);
 }
 
-function closeModal(): void {
-  modal?.classList.remove('active');
-  overlay?.classList.remove('active');
-  document.body.style.overflow = '';
-}
-
-function setupPriceLogic(product: Product): void {
-  if (!modal) return;
-
-  const sizeButtons = modal.querySelectorAll<HTMLButtonElement>('.size-btn');
-  const addButtons = modal.querySelectorAll<HTMLButtonElement>('.add-btn');
-  const priceElement = modal.querySelector<HTMLElement>('.modal__price');
+function setupPriceLogic(product: Product, modalContainer: HTMLElement): void {
+  const sizeButtons = Array.from(modalContainer.querySelectorAll<HTMLButtonElement>('.size-btn'));
+  const addButtons = Array.from(modalContainer.querySelectorAll<HTMLButtonElement>('.add-btn'));
+  const priceElement = modalContainer.querySelector<HTMLElement>('.modal__price');
   if (!priceElement) return;
-  const priceDisplay: HTMLElement = priceElement;
-  let basePrice = parseFloat(product.price.replace('$', '')) || 0;
+
+  const basePrice = parseFloat(String(product.price).replace(/[^0-9.]/g, '')) || 0;
   let sizeExtra = 0;
   let addExtras = 0;
 
+  const updatePrice = (): void => {
+    const total = (basePrice + sizeExtra + addExtras).toFixed(2);
+    priceElement.textContent = `$${total}`;
+  };
+
   sizeButtons.forEach((btn) => {
-    btn.addEventListener('click', (): void => {
+    btn.addEventListener('click', () => {
       sizeButtons.forEach((b) => b.classList.remove('active'));
       btn.classList.add('active');
-      sizeExtra = parseFloat(btn.dataset.price ?? '0');
+      sizeExtra = parseFloat(String(btn.dataset.price ?? '0')) || 0;
       updatePrice();
     });
   });
 
   addButtons.forEach((btn) => {
-    btn.addEventListener('click', (): void => {
+    btn.addEventListener('click', () => {
       btn.classList.toggle('active');
       const isActive = btn.classList.contains('active');
-      const delta = parseFloat(btn.dataset.price ?? '0');
+      const delta = parseFloat(String(btn.dataset.price ?? '0')) || 0;
       addExtras += isActive ? delta : -delta;
       updatePrice();
     });
   });
 
-  function updatePrice(): void {
-    const total = (basePrice + sizeExtra + addExtras).toFixed(2);
-    priceDisplay.textContent = `$${total}`;
-  }
+  updatePrice();
+}
+
+function closeModal(modal: HTMLElement, overlay: HTMLElement): void {
+  modal.classList.remove('active');
+  overlay.classList.remove('active');
+  document.body.style.overflow = '';
+  const modalContainer = modal.querySelector<HTMLElement>('.modal__container');
+  if (modalContainer) modalContainer.innerHTML = '';
 }

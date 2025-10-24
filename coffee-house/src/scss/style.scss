@@ -127,3 +127,8 @@ section {
     visibility: visible;
   }
 }
+
+.error-message,
+.notification {
+  color: $color-text-dark;
+}

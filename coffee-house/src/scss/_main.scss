@@ -245,6 +245,7 @@
   }
 
   &__cards {
+    opacity: 1;
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(310px, 1fr));
     gap: 40px;
@@ -305,6 +306,12 @@
 
     &__price {
       margin-top: auto;
+      &--discount {
+        font-size: 18px;
+        font-weight: normal;
+        color: $color-text-accent;
+        text-decoration: line-through;
+      }
     }
 
     &__desc {
