@@ -5,6 +5,11 @@
     align-items: center;
   }
 
+  &__wrapper {
+    display: flex;
+    gap: 32px;
+  }
+
   &__logo {
     display: block;
   }

@@ -173,12 +173,15 @@ function setupModalActions(modalContainer: HTMLElement): void {
   const overlay = document.querySelector<HTMLElement>('.overlay');
   const addToCartBtn = modalContainer.querySelector<HTMLButtonElement>('.modal__add');
   const closeIcon = modalContainer.querySelector<HTMLButtonElement>('.modal__close');
+  let counter = document.querySelector('.header__menu-count');
 
   if (!modal || !overlay) return;
 
   if (addToCartBtn) {
     addToCartBtn.addEventListener('click', () => {
-      addToCart();
+      if (counter instanceof HTMLElement) {
+        addToCart(counter);
+      }
       closeModal(modal, overlay);
     });
   }
@@ -311,6 +314,9 @@ function closeModal(modal: HTMLElement, overlay: HTMLElement): void {
   if (modalContainer) modalContainer.innerHTML = '';
 }
 
-function addToCart(): void {
+function addToCart(counter: HTMLElement): void {
+  const currentCount = parseInt(counter.textContent || '0', 10);
+  const newCount = currentCount + 1;
+  counter.textContent = newCount.toString();
   console.log('Product added to cart');
 }
