@@ -1,8 +1,15 @@
 document.addEventListener('DOMContentLoaded', () => {
+  const counter = document.querySelector<HTMLElement>('.header__menu-count');
+  const savedCount = localStorage.getItem('productCount');
+
   const burger = document.querySelector('.header__burger');
   const mobileMenu = document.querySelector('.mobile-menu');
   const menuItems = document.querySelectorAll('.mobile-menu__item a');
   if (!burger || !mobileMenu || !menuItems.length) return;
+
+  if (counter) {
+    counter.textContent = savedCount || '0';
+  }
 
   const closeMenu = (): void => {
     burger.classList.remove('active');

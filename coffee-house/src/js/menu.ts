@@ -2,6 +2,7 @@ import { categoryConfig } from './category';
 import type { Product, ProductCategory, CategoryConfigItem, SizeOption } from './types';
 import { getProducts, getProductById } from './api';
 import { showError } from '../utils/show-error';
+import { addToCart } from '../utils/add-to-cart';
 
 document.addEventListener('DOMContentLoaded', () => {
   const menuLink = document.getElementById('menu-link');
@@ -312,11 +313,4 @@ function closeModal(modal: HTMLElement, overlay: HTMLElement): void {
   document.body.style.overflow = '';
   const modalContainer = modal.querySelector<HTMLElement>('.modal__container');
   if (modalContainer) modalContainer.innerHTML = '';
-}
-
-function addToCart(counter: HTMLElement): void {
-  const currentCount = parseInt(counter.textContent || '0', 10);
-  const newCount = currentCount + 1;
-  counter.textContent = newCount.toString();
-  console.log('Product added to cart');
 }

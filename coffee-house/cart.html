@@ -1,0 +1,217 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Cart - Coffee House</title>
+    <link rel="shortcut icon" href="icons/coffee-cup.svg" type="image/x-icon" />
+    <link rel="stylesheet" href="src/css/style.min.css" />
+  </head>
+  <body class="page">
+    <header class="header">
+      <div class="container header__container">
+        <a href="index.html" class="header__logo-link">
+          <img src="icons/logo.svg" alt="Coffee House logo" class="header__logo" />
+        </a>
+        <div class="header__burger"><span></span><span></span></div>
+        <div class="mobile-menu">
+          <ul class="mobile-menu__items">
+            <li class="mobile-menu__item">
+              <a href="index.html#favorite" class="mobile-menu__link">Favorite coffee</a>
+            </li>
+            <li class="mobile-menu__item">
+              <a href="index.html#about" class="mobile-menu__link">About</a>
+            </li>
+            <li class="mobile-menu__item">
+              <a href="index.html#mobile-app" class="mobile-menu__link">Mobile app</a>
+            </li>
+            <li class="mobile-menu__item">
+              <a href="#contact-us" class="mobile-menu__link">Contact us</a>
+            </li>
+            <li class="mobile-menu__item">
+              <a href="#" class="mobile-menu__link">
+                <span>Menu</span>
+                <img src="icons/coffee-cup.svg" alt="coffee-cup" class="mobile-menu__img"
+              /></a>
+            </li>
+          </ul>
+        </div>
+        <nav>
+          <ul class="header__list">
+            <li class="header__item">
+              <a href="index.html#favorite" class="header__link link">Favorite coffee</a>
+            </li>
+            <li class="header__item">
+              <a href="index.html#about" class="header__link link">About</a>
+            </li>
+            <li class="header__item">
+              <a href="index.html#mobile-app" class="header__link link">Mobile app</a>
+            </li>
+            <li class="header__item">
+              <a href="#contact-us" class="header__link link">Contact us</a>
+            </li>
+          </ul>
+        </nav>
+
+        <div class="header__wrapper">
+          <a href="#" class="header__menu" id="menu-bag">
+            <img src="icons/shopping-bag.svg" alt="shopping-bag" class="header__menu-img" />
+            <span class="header__menu-text header__menu-count link"></span>
+          </a>
+
+          <a href="menu.html" class="header__menu" id="menu-link">
+            <span class="header__menu-text link">Menu</span>
+            <img src="icons/coffee-cup.svg" alt="coffee-cup" class="header__menu-img" />
+          </a>
+        </div>
+      </div>
+    </header>
+
+    <main class="main">
+      <div class="container">
+        <section class="cart">
+          <h1 class="cart__title title">Cart</h1>
+        </section>
+      </div>
+    </main>
+
+    <footer class="footer footer__menu" id="contact-us">
+      <div class="container footer__container">
+        <div class="footer__offer">
+          <div class="footer__offer-title title">
+            Sip, Savor, Smile.
+            <span class="title-accent">It’s coffee time!</span>
+          </div>
+
+          <ul class="footer__offer-socials">
+            <li class="footer__offer-item">
+              <a
+                href="https://twitter.com"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="footer__offer-link"
+              >
+                <svg
+                  class="footer__offer-img"
+                  width="24"
+                  height="24"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M23 3.01006C23 3.01006 20.9821 4.20217 19.86 4.54006C19.2577 3.84757 18.4573 3.35675 17.567 3.13398C16.6767 2.91122 15.7395 2.96725 14.8821 3.29451C14.0247 3.62177 13.2884 4.20446 12.773 4.96377C12.2575 5.72309 11.9877 6.62239 12 7.54006V8.54006C10.2426 8.58562 8.50127 8.19587 6.93101 7.4055C5.36074 6.61513 4.01032 5.44869 3 4.01006C3 4.01006 -1 13.0101 8 17.0101C5.94053 18.408 3.48716 19.109 1 19.0101C10 24.0101 21 19.0101 21 7.51006C20.9991 7.23151 20.9723 6.95365 20.92 6.68006C21.9406 5.67355 23 3.01006 23 3.01006Z"
+                    stroke="#E1D4C9"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  />
+                </svg>
+              </a>
+            </li>
+
+            <li class="footer__offer-item">
+              <a
+                href="https://instagram.com"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="footer__offer-link"
+              >
+                <svg
+                  class="footer__offer-img"
+                  width="24"
+                  height="24"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M12 16C14.2091 16 16 14.2091 16 12C16 9.79086 14.2091 8 12 8C9.79086 8 8 9.79086 8 12C8 14.2091 9.79086 16 12 16Z"
+                    stroke="#E1D4C9"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  />
+                  <path
+                    d="M3 16V8C3 5.23858 5.23858 3 8 3H16C18.7614 3 21 5.23858 21 8V16C21 18.7614 18.7614 21 16 21H8C5.23858 21 3 18.7614 3 16Z"
+                    stroke="#E1D4C9"
+                  />
+                  <path
+                    d="M17.5 6.51L17.51 6.49889"
+                    stroke="#E1D4C9"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  />
+                </svg>
+              </a>
+            </li>
+
+            <li class="footer__offer-item">
+              <a
+                href="https://facebook.com"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="footer__offer-link"
+              >
+                <svg
+                  class="footer__offer-img"
+                  width="24"
+                  height="24"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M17 2H14C12.6739 2 11.4021 2.52678 10.4645 3.46447C9.52678 4.40215 9 5.67392 9 7V10H6V14H9V22H13V14H16L17 10H13V7C13 6.73478 13.1054 6.48043 13.2929 6.29289C13.4804 6.10536 13.7348 6 14 6H17V2Z"
+                    stroke="#E1D4C9"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  />
+                </svg>
+              </a>
+            </li>
+          </ul>
+        </div>
+
+        <div class="footer__contacts">
+          <span class="footer__contacts-title">Contact us</span>
+          <ul class="footer__contacts-list">
+            <li class="footer__contacts-item">
+              <a
+                href="https://maps.google.com/?q=8558+Green+Rd,+LA"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="footer__contacts-link"
+              >
+                <img
+                  src="icons/contacts/location.svg"
+                  alt="location"
+                  class="footer__contacts-icon"
+                />
+                <span>8558 Green Rd., LA</span>
+              </a>
+            </li>
+
+            <li class="footer__contacts-item">
+              <a href="tel:+16035550123" class="footer__contacts-link">
+                <img src="icons/contacts/phone.svg" alt="phone" class="footer__contacts-icon" />
+                <span>+1 (603) 555-0123</span>
+              </a>
+            </li>
+
+            <li class="footer__contacts-item">
+              <a href="#" class="footer__contacts-link">
+                <img
+                  src="icons/contacts/clock.svg"
+                  alt="working hours"
+                  class="footer__contacts-icon"
+                />
+                <span>Mon-Sat: 9:00 AM – 23:00 PM</span>
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </footer>
+
+    <script type="module" src="src/js/index-cart.ts"></script>
+  </body>
+</html>
