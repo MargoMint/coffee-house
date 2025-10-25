@@ -113,9 +113,9 @@ function createCard(item: Product): string {
   const category = item.category || 'coffee';
   const imgPath = `/img/products/${category}/${item.id}.jpg`;
   const priceText = item.discountPrice
-    ? `<span class="menu-card__price--old">${item.price}</span>
-        <span class="menu-card__price--discount">${item.discountPrice}</span>`
-    : `<span class="menu-card__price">${item.price}</span>`;
+    ? `<span class="menu-card__price--discount">$${item.discountPrice}</span>
+        <span class="menu-card__price--old">$${item.price}</span>`
+    : `<span class="menu-card__price">$${item.price}</span>`;
 
   return `
     <div class="menu-card" data-id="${item.id}">

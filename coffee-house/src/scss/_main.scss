@@ -306,10 +306,9 @@
 
     &__price {
       margin-top: auto;
-      &--discount {
-        font-size: 18px;
-        font-weight: normal;
-        color: $color-text-accent;
+      &--old {
+        margin-left: 8px;
+        opacity: 0.5;
         text-decoration: line-through;
       }
     }
