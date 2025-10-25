@@ -135,7 +135,7 @@ function createCard(item: Product): string {
 
 function setupModalListeners(): void {
   const overlay = document.querySelector<HTMLElement>('.overlay');
-  const modal = document.querySelector<HTMLElement>('.modal');
+  const modal = document.querySelector<HTMLElement>('.modal-wrapper');
   const modalContainer = document.querySelector<HTMLElement>('.modal__container');
 
   if (!overlay || !modal || !modalContainer) return;
@@ -166,6 +166,28 @@ function setupModalListeners(): void {
   document.addEventListener('keydown', (e: KeyboardEvent) => {
     if (e.key === 'Escape') closeModal(modal, overlay);
   });
+}
+
+function setupModalActions(modalContainer: HTMLElement): void {
+  const modal = document.querySelector<HTMLElement>('.modal-wrapper');
+  const overlay = document.querySelector<HTMLElement>('.overlay');
+  const addToCartBtn = modalContainer.querySelector<HTMLButtonElement>('.modal__add');
+  const closeIcon = modalContainer.querySelector<HTMLButtonElement>('.modal__close');
+
+  if (!modal || !overlay) return;
+
+  if (addToCartBtn) {
+    addToCartBtn.addEventListener('click', () => {
+      addToCart();
+      closeModal(modal, overlay);
+    });
+  }
+
+  if (closeIcon) {
+    closeIcon.addEventListener('click', () => {
+      closeModal(modal, overlay);
+    });
+  }
 }
 
 async function openModalById(
@@ -235,18 +257,13 @@ function renderModal(product: Product, modalContainer: HTMLElement): void {
           <p class="modal__total-text">Total:</p>
           <span class="modal__price">${priceText}</span>
         </div>
-        <div class="modal__alert">
-          <img src="icons/info.svg" alt="Info" class="modal__alert-img"/>
-          <p class="modal__alert-text">
-            The cost is not final. Download our mobile app to see the final price and place your order.
-          </p>
-        </div>
-        <button class="button button-secondary modal__close" type="button">Close</button>
+        <button class="button button-secondary modal__add" type="button">Add to cart</button>
       </div>
     </div>
   `;
 
   setupPriceLogic(product, modalContainer);
+  setupModalActions(modalContainer);
 }
 
 function setupPriceLogic(product: Product, modalContainer: HTMLElement): void {
@@ -292,4 +309,8 @@ function closeModal(modal: HTMLElement, overlay: HTMLElement): void {
   document.body.style.overflow = '';
   const modalContainer = modal.querySelector<HTMLElement>('.modal__container');
   if (modalContainer) modalContainer.innerHTML = '';
+}
+
+function addToCart(): void {
+  console.log('Product added to cart');
 }
