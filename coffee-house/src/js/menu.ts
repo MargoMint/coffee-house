@@ -114,8 +114,8 @@ function createCard(item: Product): string {
   const category = item.category || 'coffee';
   const imgPath = `/img/products/${category}/${item.id}.jpg`;
   const priceText = item.discountPrice
-    ? `<span class="menu-card__price--discount">$${item.discountPrice}</span>
-        <span class="menu-card__price--old">$${item.price}</span>`
+    ? `<span class="menu-card__price--new">$${item.discountPrice}</span>
+        <span class="menu-card__price--old price--old">$${item.price}</span>`
     : `<span class="menu-card__price">$${item.price}</span>`;
 
   return `
@@ -241,30 +241,33 @@ function renderModal(product: Product, modalContainer: HTMLElement): void {
     )
     .join('');
 
-  const priceText = product.price;
+  const priceText = product.discountPrice
+    ? `<span class="modal__price modal__price--old">$${Number(product.price).toFixed(2)}</span>
+      <span class="modal__price modal__price--new">$${Number(product.discountPrice).toFixed(2)}</span>`
+    : `<span class="modal__price">$${Number(product.price).toFixed(2)}</span>`;
 
   modalContainer.innerHTML = `
-    <div class="modal__content" role="dialog" aria-modal="true" aria-labelledby="modal-title">
-      <img src="${imgPath}" alt="${product.name}" class="modal__img" />
-      <div class="modal__info">
-        <h3 id="modal-title" class="modal__title">${product.name}</h3>
-        <p class="modal__desc">${product.description}</p>
-        <div class="modal__sizes">
-          <p class="modal__subtitle">Size</p>
-          <div class="modal__btns">${sizeButtonsHTML}</div>
-        </div>
-        <div class="modal__additives">
-          <p class="modal__subtitle">Additives</p>
-          <div class="modal__btns">${addButtonsHTML}</div>
-        </div>
-        <div class="modal__total">
-          <p class="modal__total-text">Total:</p>
-          <span class="modal__price">${priceText}</span>
-        </div>
-        <button class="button button-secondary modal__add" type="button">Add to cart</button>
+  <div class="modal__content" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+    <img src="${imgPath}" alt="${product.name}" class="modal__img" />
+    <div class="modal__info">
+      <h3 id="modal-title" class="modal__title">${product.name}</h3>
+      <p class="modal__desc">${product.description}</p>
+      <div class="modal__sizes">
+        <p class="modal__subtitle">Size</p>
+        <div class="modal__btns">${sizeButtonsHTML}</div>
       </div>
+      <div class="modal__additives">
+        <p class="modal__subtitle">Additives</p>
+        <div class="modal__btns">${addButtonsHTML}</div>
+      </div>
+      <div class="modal__total">
+        <p class="modal__total-text">Total:</p>
+        <div class="modal__price-block">${priceText}</div>
+      </div>
+      <button class="button button-secondary modal__add" type="button">Add to cart</button>
     </div>
-  `;
+  </div>
+`;
 
   setupPriceLogic(product, modalContainer);
   setupModalActions(modalContainer);
@@ -273,23 +276,29 @@ function renderModal(product: Product, modalContainer: HTMLElement): void {
 function setupPriceLogic(product: Product, modalContainer: HTMLElement): void {
   const sizeButtons = Array.from(modalContainer.querySelectorAll<HTMLButtonElement>('.size-btn'));
   const addButtons = Array.from(modalContainer.querySelectorAll<HTMLButtonElement>('.add-btn'));
-  const priceElement = modalContainer.querySelector<HTMLElement>('.modal__price');
-  if (!priceElement) return;
+  const priceBlock = modalContainer.querySelector<HTMLElement>('.modal__price-block');
+  if (!priceBlock) return;
 
-  const basePrice = parseFloat(String(product.price).replace(/[^0-9.]/g, '')) || 0;
+  const basePrice = Number(product.price);
+  const baseDiscount = product.discountPrice ? Number(product.discountPrice) : null;
   let sizeExtra = 0;
   let addExtras = 0;
 
   const updatePrice = (): void => {
-    const total = (basePrice + sizeExtra + addExtras).toFixed(2);
-    priceElement.textContent = `$${total}`;
+    const total = basePrice + sizeExtra + addExtras;
+    const totalDiscount = baseDiscount ? baseDiscount + sizeExtra + addExtras : null;
+
+    priceBlock.innerHTML = totalDiscount
+      ? `<span class="modal__price modal__price--old">$${total.toFixed(2)}</span>
+          <span class="modal__price modal__price--new">$${totalDiscount.toFixed(2)}</span>`
+      : `<span class="modal__price">$${total.toFixed(2)}</span>`;
   };
 
   sizeButtons.forEach((btn) => {
     btn.addEventListener('click', () => {
       sizeButtons.forEach((b) => b.classList.remove('active'));
       btn.classList.add('active');
-      sizeExtra = parseFloat(String(btn.dataset.price ?? '0')) || 0;
+      sizeExtra = parseFloat(btn.dataset.price ?? '0') || 0;
       updatePrice();
     });
   });
@@ -297,9 +306,8 @@ function setupPriceLogic(product: Product, modalContainer: HTMLElement): void {
   addButtons.forEach((btn) => {
     btn.addEventListener('click', () => {
       btn.classList.toggle('active');
-      const isActive = btn.classList.contains('active');
-      const delta = parseFloat(String(btn.dataset.price ?? '0')) || 0;
-      addExtras += isActive ? delta : -delta;
+      const delta = parseFloat(btn.dataset.price ?? '0') || 0;
+      addExtras += btn.classList.contains('active') ? delta : -delta;
       updatePrice();
     });
   });

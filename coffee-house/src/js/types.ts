@@ -26,3 +26,13 @@ export interface CategoryConfigItem {
   sizes: SizeOption[];
   additives: string[];
 }
+
+export interface CartItem {
+  id: number;
+  name: string;
+  size: string;
+  additives: string[];
+  price: number;
+  discountPrice?: number;
+  img: string;
+}

@@ -131,6 +131,17 @@
     line-height: 125%;
   }
 
+  &__price {
+    &--old {
+      opacity: 0.5;
+      text-decoration: line-through;
+    }
+
+    &--new {
+      margin-left: 20px;
+    }
+  }
+
   &__close {
     position: absolute;
     top: -45px;

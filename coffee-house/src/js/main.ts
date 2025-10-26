@@ -8,7 +8,8 @@ document.addEventListener('DOMContentLoaded', () => {
   if (!burger || !mobileMenu || !menuItems.length) return;
 
   if (counter) {
-    counter.textContent = savedCount || '0';
+    const count = savedCount ? parseInt(savedCount, 10) : 0;
+    counter.textContent = count > 0 ? count.toString() : '';
   }
 
   const closeMenu = (): void => {
