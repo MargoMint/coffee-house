@@ -7,6 +7,7 @@
 @import 'slider';
 @import 'modal';
 @import 'cart';
+@import 'forms';
 @import 'media';
 
 html {
@@ -93,6 +94,10 @@ section {
     background-color: transparent;
     padding: 10px 73px;
     transition: all 0.3s ease;
+  }
+
+  &-registration {
+    padding: 10px 55px;
   }
 }
 
