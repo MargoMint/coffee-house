@@ -60,3 +60,32 @@ export async function getFavorites(): Promise<Product[]> {
     throw error;
   }
 }
+
+export async function registerUser(data: Record<string, string | number>): Promise<string | null> {
+  try {
+    const response = await fetch(`${BASE_URL}/auth/register`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(data),
+    });
+
+    if (!response.ok) {
+      const result = await response.json();
+
+      if (response.status === 400) {
+        return result.error || 'Invalid data provided';
+      }
+
+      if (response.status === 409) {
+        return result.error || 'User already exists';
+      }
+
+      return result.error || 'Registration failed';
+    }
+
+    return null;
+  } catch (error) {
+    console.error('Network error:', error);
+    return 'Network error. Please try again later.';
+  }
+}

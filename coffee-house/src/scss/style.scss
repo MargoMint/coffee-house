@@ -36,6 +36,11 @@ li {
   list-style: none;
 }
 
+select,
+input {
+  appearance: none;
+}
+
 section {
   margin-top: 99px;
 }

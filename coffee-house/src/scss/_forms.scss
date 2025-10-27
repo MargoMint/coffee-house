@@ -19,6 +19,7 @@
 
   &__row {
     display: flex;
+    flex-wrap: wrap;
     column-gap: 24px;
     justify-content: center;
 
@@ -48,7 +49,6 @@
 
       input {
         position: relative;
-        appearance: none;
         cursor: pointer;
         width: 16px;
         height: 16px;
@@ -87,6 +87,10 @@
     line-height: 150%;
     color: $color-placeholder;
 
+    background-repeat: no-repeat;
+    background-position: right 12px center;
+    background-size: 16px;
+
     &::placeholder {
       color: $color-placeholder;
     }
@@ -96,7 +100,15 @@
     }
 
     &.invalid {
+      color: $color-placeholder;
       border-color: $color-danger-primary;
+      background-image: url('/icons/alert-triangle.svg');
+    }
+
+    &.valid {
+      color: $color-text-dark;
+      border-color: $color-success-primary;
+      background-image: url('/icons/check.svg');
     }
 
     &:focus {
