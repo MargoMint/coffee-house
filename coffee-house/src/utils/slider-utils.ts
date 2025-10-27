@@ -1,39 +1,11 @@
-import { getFavorites } from './api';
-import type { SliderItem } from './types';
-import { showError } from '../utils/show-error';
-import { showLoader } from '../utils/show-loader';
+import type { SliderItem } from '../ts/types';
 
 const SLIDE_INTERVAL = 6000;
 let currentIndex = 0;
 let autoTimer: number | undefined;
 let isPaused = false;
 
-document.addEventListener('DOMContentLoaded', async () => {
-  const sliderContainer = document.querySelector('.slider') as HTMLElement;
-  const sliderLine = sliderContainer.querySelector('.slider__line') as HTMLElement;
-
-  if (!sliderContainer || !sliderLine) return;
-
-  showLoader(sliderLine);
-  try {
-    const favorites = await getFavorites();
-
-    const sliderData: SliderItem[] = favorites.map((item) => ({
-      img: `/img/products/${item.category}/${item.id}.jpg`,
-      title: item.name,
-      text: item.description,
-      price: item.discountPrice ? `$${item.discountPrice}` : `$${item.price}`,
-    }));
-
-    renderSlider(sliderData);
-    initSlider();
-  } catch (err) {
-    console.error('slider error:', err);
-    showError(sliderContainer);
-  }
-});
-
-function renderSlider(sliderData: SliderItem[]): void {
+export function renderSlider(sliderData: SliderItem[]): void {
   const sliderLine = document.querySelector('.slider__line') as HTMLElement;
   const controlsContainer = document.querySelector('.slider__controls') as HTMLElement;
 
@@ -61,7 +33,7 @@ function renderSlider(sliderData: SliderItem[]): void {
   });
 }
 
-function initSlider(): void {
+export function initSlider(): void {
   const line = document.querySelector('.slider__line') as HTMLElement;
   const slides = document.querySelectorAll('.slider__item');
   const controls = document.querySelectorAll('.slider__control-item');

@@ -1,49 +1,11 @@
 import './main';
 import { initFormValidation } from '../utils/form-utils';
 import { registerUser } from './api';
+import { citiesWithStreets } from '../utils/cities-data';
 
 if (localStorage.getItem('isRegistered') === 'true') {
   window.location.href = 'cart.html';
 }
-
-const citiesWithStreets: Record<string, string[]> = {
-  city1: [
-    'Dluga',
-    'Mariacka',
-    'Targowa',
-    'Grunwaldzka',
-    'Waly Jagiellonskie',
-    'Hucisko',
-    'Garncarska',
-    'Rajska',
-    'Chlebnicka',
-    'Piwna',
-  ],
-  city2: [
-    'Marszalkowska',
-    'Nowy Swiat',
-    'Krolewska',
-    'Swietokrzyska',
-    'Kasztanowa',
-    'Malczewskiego',
-    'Zielona',
-    'Lipowa',
-    'Jasna',
-    'Cicha',
-  ],
-  city3: [
-    'Stary Rynek',
-    'Wroclawska',
-    'Polna',
-    'Sikorskiego',
-    'Kosciuszki',
-    'Ogrodowa',
-    'Sadowa',
-    'Krucza',
-    'Mickiewicza',
-    'Kwiatowa',
-  ],
-};
 
 const form = document.getElementById('registration-form') as HTMLFormElement;
 const submitError = document.getElementById('submit-error') as HTMLParagraphElement;

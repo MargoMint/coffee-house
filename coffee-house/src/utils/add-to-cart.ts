@@ -1,4 +1,4 @@
-import type { CartItem } from '../js/types';
+import type { CartItem } from '../ts/types';
 
 export function addToCart(counter: HTMLElement): void {
   const currentCount = parseInt(counter.textContent || '0', 10);

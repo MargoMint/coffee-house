@@ -1,24 +1,18 @@
-import type { Product, ProductCategory } from './types';
+import type { Product, ApiResponse, ProductCategory } from './types';
+import { AuthError } from './types';
 
 const BASE_URL = 'https://6kt29kkeub.execute-api.eu-central-1.amazonaws.com';
 
-interface ApiResponse {
-  data?: Product[];
-  message?: string;
-  error?: string;
+async function fetchData<T>(url: string, options?: RequestInit): Promise<T> {
+  const response = await fetch(url, options);
+  if (!response.ok) throw new Error('Failed to fetch');
+  return response.json() as Promise<T>;
 }
 
 export async function getProducts(category?: ProductCategory): Promise<Product[]> {
   try {
-    const response = await fetch(`${BASE_URL}/products`);
-    if (!response.ok) {
-      throw new Error('Failed to fetch products');
-    }
-
-    const json: ApiResponse = await response.json();
-
+    const json: ApiResponse = await fetchData<ApiResponse>(`${BASE_URL}/products`);
     const data = Array.isArray(json.data) ? json.data : [];
-
     return category ? data.filter((p) => p.category === category) : data;
   } catch (error) {
     console.error('getProducts error:', error);
@@ -28,15 +22,10 @@ export async function getProducts(category?: ProductCategory): Promise<Product[]
 
 export async function getProductById(id: number): Promise<Product> {
   try {
-    const response = await fetch(`${BASE_URL}/products/${id}`);
-    if (!response.ok) {
-      throw new Error('Failed to fetch product');
-    }
-
-    const json: { data?: Product } = await response.json();
-    if (!json.data) {
-      throw new Error('Product data is missing in response');
-    }
+    const json: ApiResponse<Product> = await fetchData<ApiResponse<Product>>(
+      `${BASE_URL}/products/${id}`
+    );
+    if (!json.data) throw new Error('Product data is missing in response');
     return json.data;
   } catch (error) {
     console.error('getProductById error:', error);
@@ -46,14 +35,8 @@ export async function getProductById(id: number): Promise<Product> {
 
 export async function getFavorites(): Promise<Product[]> {
   try {
-    const response = await fetch(`${BASE_URL}/products/favorites`);
-    if (!response.ok) {
-      throw new Error('Failed to fetch favorite products');
-    }
-    const json: ApiResponse = await response.json();
-    if (!json.data) {
-      throw new Error('Favorites data missing');
-    }
+    const json: ApiResponse = await fetchData<ApiResponse>(`${BASE_URL}/products/favorites`);
+    if (!json.data) throw new Error('Favorites data missing');
     return json.data;
   } catch (error) {
     console.error('getFavorites error:', error);
@@ -71,22 +54,15 @@ export async function registerUser(data: Record<string, string | number>): Promi
 
     if (!response.ok) {
       const result = await response.json();
-
-      if (response.status === 400) {
-        return result.error || 'Invalid data provided';
-      }
-
-      if (response.status === 409) {
-        return result.error || 'User already exists';
-      }
-
-      return result.error || 'Registration failed';
+      if (response.status === 400) return result.error || AuthError.InvalidData;
+      if (response.status === 409) return result.error || AuthError.AlreadyExists;
+      return result.error || AuthError.RegistrationFailed;
     }
 
     return null;
   } catch (error) {
     console.error('Network error:', error);
-    return 'Network error. Please try again later.';
+    return AuthError.NetworkError;
   }
 }
 
@@ -100,13 +76,14 @@ export async function loginUser(data: Record<string, string>): Promise<string | 
 
     if (!response.ok) {
       const result = await response.json();
-      if (response.status === 401) return result.error || 'Incorrect login or password';
-      return result.error || 'Login failed';
+      if (response.status === 401) return result.error || AuthError.IncorrectCredentials;
+      return result.error || AuthError.LoginFailed;
     }
+
     return null;
   } catch (error) {
     console.error('Network error:', error);
-    return 'Network error. Please try again later.';
+    return AuthError.NetworkError;
   }
 }
 

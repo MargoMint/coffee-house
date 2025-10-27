@@ -1,4 +1,4 @@
-import type { ProductCategory, CategoryConfigItem } from './types';
+import type { ProductCategory, CategoryConfigItem } from '../ts/types';
 
 export const categoryConfig: Record<ProductCategory, CategoryConfigItem> = {
   coffee: {

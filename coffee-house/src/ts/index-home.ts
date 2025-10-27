@@ -1,3 +1,3 @@
 import './main';
-import './products';
+import '../utils/products-data';
 import './home';

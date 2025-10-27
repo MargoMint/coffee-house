@@ -36,3 +36,18 @@ export interface CartItem {
   discountPrice?: number;
   img: string;
 }
+
+export enum AuthError {
+  InvalidData = 'Invalid data provided',
+  AlreadyExists = 'User already exists',
+  LoginFailed = 'Login failed',
+  IncorrectCredentials = 'Incorrect login or password',
+  NetworkError = 'Network error. Please try again later.',
+  RegistrationFailed = 'Registration failed',
+}
+
+export interface ApiResponse<T = Product[]> {
+  data?: T;
+  message?: string;
+  error?: string;
+}

@@ -1,4 +1,4 @@
-import type { Product } from './types';
+import type { Product } from '../ts/types';
 
 export const products: Record<string, Product[]> = {
   coffee: [
