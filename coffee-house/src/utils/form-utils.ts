@@ -44,13 +44,18 @@ export function setFormButtonState(button: HTMLButtonElement, enabled: boolean):
   button.disabled = !enabled;
 }
 
-export function initFormValidation(form: HTMLFormElement): void {
+export function initFormValidation(
+  form: HTMLFormElement,
+  buttonSelector = '.button-registration'
+): void {
   const inputs = form.querySelectorAll<HTMLInputElement | HTMLSelectElement>('.form__input');
-  const button = form.querySelector<HTMLButtonElement>('.button-registration')!;
+  const button = form.querySelector<HTMLButtonElement>(buttonSelector)!;
 
   inputs.forEach((input) => {
     input.addEventListener('blur', () => validateField(input, form));
-    input.addEventListener('focus', () => clearFormError(input));
+    input.addEventListener('focus', () => {
+      validateField(input, form, false);
+    });
   });
 
   form.addEventListener('input', () => {
@@ -59,7 +64,11 @@ export function initFormValidation(form: HTMLFormElement): void {
   });
 }
 
-function validateField(input: HTMLInputElement | HTMLSelectElement, form: HTMLFormElement, show = true): boolean {
+function validateField(
+  input: HTMLInputElement | HTMLSelectElement,
+  form: HTMLFormElement,
+  show = true
+): boolean {
   let error: string | null = null;
 
   switch (input.name) {
@@ -88,7 +97,6 @@ function validateField(input: HTMLInputElement | HTMLSelectElement, form: HTMLFo
     if (error) showFormError(input, error);
     else showValid(input);
   }
-  if (!show) clearFormError(input);
 
   return !!error;
 }

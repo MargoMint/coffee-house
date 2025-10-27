@@ -89,3 +89,34 @@ export async function registerUser(data: Record<string, string | number>): Promi
     return 'Network error. Please try again later.';
   }
 }
+
+export async function loginUser(data: Record<string, string>): Promise<string | null> {
+  try {
+    const response = await fetch(`${BASE_URL}/auth/login`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(data),
+    });
+
+    if (!response.ok) {
+      const result = await response.json();
+      if (response.status === 401) return result.error || 'Incorrect login or password';
+      return result.error || 'Login failed';
+    }
+    return null;
+  } catch (error) {
+    console.error('Network error:', error);
+    return 'Network error. Please try again later.';
+  }
+}
+
+export async function getProfile(): Promise<Record<string, unknown> | null> {
+  try {
+    const response = await fetch(`${BASE_URL}/auth/profile`);
+    if (!response.ok) return null;
+    return await response.json();
+  } catch (error) {
+    console.error('Profile request failed:', error);
+    return null;
+  }
+}
