@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Menu - Coffee House</title>
+    <title>Registration - Coffee House</title>
     <link rel="shortcut icon" href="icons/coffee-cup.svg" type="image/x-icon" />
     <link rel="stylesheet" href="src/css/style.min.css" />
   </head>
@@ -59,7 +59,7 @@
             <span class="header__menu-text header__menu-count link"></span>
           </a>
 
-          <a href="#" class="header__menu" id="menu-link">
+          <a href="menu.html" class="header__menu" id="menu-link">
             <span class="header__menu-text link">Menu</span>
             <img src="icons/coffee-cup.svg" alt="coffee-cup" class="header__menu-img" />
           </a>
@@ -69,41 +69,99 @@
 
     <main class="main">
       <div class="container">
-        <section class="menu">
-          <h1 class="menu__title title">
-            Behind each of our cups hides an
-            <span class="title-accent">amazing surprise</span>
-          </h1>
+        <section class="registration">
+          <h1 class="registration__title title">Registration</h1>
+          <form class="form form__registration" id="registration-form">
+            <div class="form__row">
+              <div class="form__field">
+                <label for="login" class="form__label">Login</label>
+                <input
+                  type="text"
+                  id="login"
+                  name="login"
+                  class="form__input"
+                  placeholder="Placeholder"
+                />
+                <span class="form__error"></span>
+              </div>
 
-          <ul class="menu__tabs">
-            <li class="menu__tab menu__tab--active" id="coffee">
-              <div class="menu__tab-icon-wrapper">
-                <img src="icons/tabs/tab-item-1.png" alt="Coffee" class="menu__tab-icon" />
+              <div class="form__field">
+                <label for="password" class="form__label">Password</label>
+                <input
+                  type="password"
+                  id="password"
+                  name="password"
+                  class="form__input"
+                  placeholder="Placeholder"
+                />
+                <span class="form__error"></span>
               </div>
-              <span class="menu__tab-text">Coffee</span>
-            </li>
-            <li class="menu__tab" id="tea">
-              <div class="menu__tab-icon-wrapper">
-                <img src="icons/tabs/tab-item-2.png" alt="Tea" class="menu__tab-icon" />
+
+              <div class="form__field">
+                <label for="confirm-password" class="form__label">Confirm Password</label>
+                <input
+                  type="password"
+                  id="confirm-password"
+                  name="confirm-password"
+                  class="form__input"
+                  placeholder="Placeholder"
+                />
+                <span class="form__error"></span>
               </div>
-              <span class="menu__tab-text">Tea</span>
-            </li>
-            <li class="menu__tab" id="dessert">
-              <div class="menu__tab-icon-wrapper">
-                <img src="icons/tabs/tab-item-3.png" alt="Dessert" class="menu__tab-icon" />
+            </div>
+
+            <div class="form__row form__row--second">
+              <div class="form__field">
+                <label for="city" class="form__label">City</label>
+                <select id="city" name="city" class="form__input form__input--second">
+                  <option value="">Placeholder</option>
+                  <option value="city1">Gdansk</option>
+                  <option value="city2">Warszawa</option>
+                  <option value="city3">Poznan</option>
+                </select>
+                <span class="form__error"></span>
               </div>
-              <span class="menu__tab-text">Dessert</span>
-            </li>
-          </ul>
+
+              <div class="form__field">
+                <label for="street" class="form__label">Street</label>
+                <select id="street" name="street" class="form__input form__input--second">
+                  <option value="">Placeholder</option>
+                </select>
+                <span class="form__error"></span>
+              </div>
+
+              <div class="form__field">
+                <label for="house" class="form__label">House number</label>
+                <input
+                  type="number"
+                  id="house"
+                  name="house"
+                  class="form__input form__input--second"
+                  placeholder="Placeholder"
+                  min="1"
+                />
+                <span class="form__error"></span>
+              </div>
+
+              <div class="form__field form__field--radio">
+                <span class="form__label">Pay by</span>
+                <div class="form__radio-group">
+                  <label><input type="radio" name="payment" value="cash" checked /> Cash</label>
+                  <label><input type="radio" name="payment" value="card" /> Card</label>
+                </div>
+              </div>
+            </div>
+
+            <button
+              type="submit"
+              class="button button-secondary form__button button-registration"
+              disabled
+            >
+              Registration
+            </button>
+            <p class="form__submit-error" id="submit-error"></p>
+          </form>
         </section>
-
-        <section class="menu-section menu__cards">
-          <h2 class="hidden">Menu cards</h2>
-        </section>
-
-        <button class="load-more hidden">
-          <img src="icons/refresh.svg" alt="Load more" class="load-more__icon" />
-        </button>
       </div>
     </main>
 
@@ -244,17 +302,6 @@
       </div>
     </footer>
 
-    <div class="overlay"></div>
-
-    <div class="modal-wrapper">
-      <div class="modal">
-        <div class="modal__container"></div>
-      </div>
-      <button class="modal__close" type="button" aria-label="Close modal">
-        <span></span><span></span>
-      </button>
-    </div>
-
-    <script type="module" src="src/ts/index-menu.ts"></script>
+    <script type="module" src="src/ts/index-registration.ts"></script>
   </body>
 </html>

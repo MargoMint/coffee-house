@@ -1,0 +1,117 @@
+.slider {
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+
+  &__buttons {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    right: 0;
+    display: flex;
+    justify-content: space-between;
+    transform: translateY(-50%);
+    pointer-events: none;
+    z-index: 100;
+  }
+
+  &__btn {
+    pointer-events: all;
+    background: transparent;
+    border-radius: 50%;
+    width: 60px;
+    height: 60px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    border: 1px solid $color-bg-container;
+    transition: all 0.3s;
+  }
+
+  &__line {
+    display: flex;
+    transition: transform 0.6s ease;
+  }
+
+  &__item {
+    flex: 0 0 100%;
+    text-align: center;
+    opacity: 0;
+    transition: opacity 0.6s ease;
+    &.active {
+      opacity: 1;
+    }
+  }
+
+  &__img-container {
+    margin-top: 40px;
+  }
+
+  &__img-container img {
+    max-width: 480px;
+  }
+
+  &__content {
+    width: 100%;
+    max-width: 480px;
+    margin: 0 auto;
+    margin-top: 15px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    align-items: center;
+  }
+
+  &__title {
+    font-weight: 600;
+    font-size: 24px;
+    line-height: 125%;
+  }
+
+  &__text {
+    width: 100%;
+    font-weight: 400;
+    max-width: 470px;
+    font-size: 16px;
+  }
+
+  &__price {
+    font-weight: 600;
+    font-size: 24px;
+    line-height: 125%;
+  }
+
+  &__controls {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 12px;
+    margin-top: 40px;
+  }
+
+  &__control-item {
+    position: relative;
+    width: 40px;
+    height: 4px;
+    background: $color-border-light;
+    border-radius: 100px;
+    overflow: hidden;
+
+    &::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 0%;
+      height: 100%;
+      background: $color-bg-container;
+      transition: width linear;
+    }
+
+    &.active::after {
+      width: 100%;
+      transition: width 6s linear;
+    }
+  }
+}
