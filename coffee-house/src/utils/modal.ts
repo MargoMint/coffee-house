@@ -3,6 +3,7 @@ import { getProductById } from '../ts/api';
 import type { Product, ProductCategory, CategoryConfigItem, SizeOption } from '../ts/types';
 import { categoryConfig } from './category-data';
 import { showToast } from './show-toast';
+import { isLoginned } from './auth';
 
 function renderModal(product: Product, modalContainer: HTMLElement): void {
   const activeTab = document.querySelector<HTMLElement>('.menu__tab--active');
@@ -10,6 +11,8 @@ function renderModal(product: Product, modalContainer: HTMLElement): void {
   const imgPath = `/img/products/${category}/${product.id}.jpg`;
 
   const config: CategoryConfigItem = categoryConfig[category];
+
+  const userLoggedIn = isLoginned();
 
   const sizeButtonsHTML = (config.sizes || [])
     .map(
@@ -31,10 +34,15 @@ function renderModal(product: Product, modalContainer: HTMLElement): void {
     )
     .join('');
 
-  const priceText = product.discountPrice
-    ? `<span class="modal__price modal__price--old">$${Number(product.price).toFixed(2)}</span>
-      <span class="modal__price modal__price--new">$${Number(product.discountPrice).toFixed(2)}</span>`
-    : `<span class="modal__price">$${Number(product.price).toFixed(2)}</span>`;
+  let priceText: string;
+  if (userLoggedIn && product.discountPrice) {
+    priceText = `
+      <span class="modal__price modal__price--old">$${Number(product.price).toFixed(2)}</span>
+      <span class="modal__price modal__price--new">$${Number(product.discountPrice).toFixed(2)}</span>
+    `;
+  } else {
+    priceText = `<span class="modal__price">$${Number(product.price).toFixed(2)}</span>`;
+  }
 
   modalContainer.innerHTML = `
   <div class="modal__content" role="dialog" aria-modal="true" aria-labelledby="modal-title">
@@ -149,8 +157,10 @@ function setupPriceLogic(product: Product, modalContainer: HTMLElement): void {
   const priceBlock = modalContainer.querySelector<HTMLElement>('.modal__price-block');
   if (!priceBlock) return;
 
+  const userLoggedIn = isLoginned();
+
   const basePrice = Number(product.price);
-  const baseDiscount = product.discountPrice ? Number(product.discountPrice) : null;
+  const baseDiscount = userLoggedIn && product.discountPrice ? Number(product.discountPrice) : null;
   let sizeExtra = 0;
   let addExtras = 0;
 

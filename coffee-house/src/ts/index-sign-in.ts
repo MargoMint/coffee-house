@@ -1,9 +1,10 @@
 import './main';
 import { initFormValidation } from '../utils/form-utils';
 import { loginUser } from './api';
+import { setIsLoginned, isLoginned } from '../utils/auth';
 
-if (localStorage.getItem('isLoginned') === 'true') {
-  window.location.href = 'cart.html';
+if (isLoginned()) {
+  window.location.href = 'menu.html';
 }
 
 const form = document.getElementById('sign-in-form') as HTMLFormElement;
@@ -32,7 +33,7 @@ form.addEventListener('submit', async (event) => {
     submitError.classList.add('visible');
     button.disabled = false;
   } else {
-    localStorage.setItem('isLoginned', 'true');
+    setIsLoginned(true);
     form.reset();
     window.location.href = 'menu.html';
   }

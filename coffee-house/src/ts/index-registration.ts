@@ -2,9 +2,10 @@ import './main';
 import { initFormValidation } from '../utils/form-utils';
 import { registerUser } from './api';
 import { citiesWithStreets } from '../utils/cities-data';
+import { setIsLoginned, isLoginned } from '../utils/auth';
 
-if (localStorage.getItem('isRegistered') === 'true') {
-  window.location.href = 'cart.html';
+if (isLoginned()) {
+  window.location.href = 'menu.html';
 }
 
 const form = document.getElementById('registration-form') as HTMLFormElement;
@@ -48,7 +49,7 @@ form.addEventListener('submit', async (event) => {
     submitError.textContent = error;
     submitError.classList.add('visible');
   } else {
-    localStorage.setItem('isRegistered', 'true');
+    setIsLoginned(true);
     form.reset();
     window.location.href = 'menu.html';
   }

@@ -1,4 +1,7 @@
+import { isLoginned } from '../utils/auth';
+
 document.addEventListener('DOMContentLoaded', () => {
+  const menuBag = document.querySelector<HTMLElement>('#menu-bag');
   const counter = document.querySelector<HTMLElement>('.header__menu-count');
   const savedCount = localStorage.getItem('productCount');
 
@@ -7,9 +10,16 @@ document.addEventListener('DOMContentLoaded', () => {
   const menuItems = document.querySelectorAll('.mobile-menu__item a');
   if (!burger || !mobileMenu || !menuItems.length) return;
 
-  if (counter) {
+  if (counter && menuBag) {
     const count = savedCount ? parseInt(savedCount, 10) : 0;
     counter.textContent = count > 0 ? count.toString() : '';
+
+    if (isLoginned()) {
+      menuBag.classList.remove('hidden');
+    } else {
+      if (count > 0) menuBag.classList.remove('hidden');
+      else menuBag.classList.add('hidden');
+    }
   }
 
   const closeMenu = (): void => {

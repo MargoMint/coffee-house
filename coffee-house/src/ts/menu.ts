@@ -2,6 +2,7 @@ import type { Product, ProductCategory } from './types';
 import { getProducts } from './api';
 import { showError } from '../utils/show-error';
 import { setupModalListeners } from '../utils/modal';
+import { isLoginned } from '../utils/auth';
 
 document.addEventListener('DOMContentLoaded', () => {
   const menuLink = document.getElementById('menu-link');
@@ -112,10 +113,19 @@ function setupLoadMore(button: HTMLButtonElement | null, container: HTMLElement)
 function createCard(item: Product): string {
   const category = item.category || 'coffee';
   const imgPath = `/img/products/${category}/${item.id}.jpg`;
-  const priceText = item.discountPrice
-    ? `<span class="menu-card__price--new">$${item.discountPrice}</span>
-        <span class="menu-card__price--old price--old">$${item.price}</span>`
-    : `<span class="menu-card__price">$${item.price}</span>`;
+
+  const userLoggedIn = isLoginned();
+
+  let priceText: string;
+
+  if (userLoggedIn && item.discountPrice) {
+    priceText = `
+      <span class="menu-card__price--new">$${item.discountPrice}</span>
+      <span class="menu-card__price--old price--old">$${item.price}</span>
+    `;
+  } else {
+    priceText = `<span class="menu-card__price">$${item.price}</span>`;
+  }
 
   return `
     <div class="menu-card" data-id="${item.id}">
