@@ -2,6 +2,7 @@ import { addToCart } from './add-to-cart';
 import { getProductById } from '../ts/api';
 import type { Product, ProductCategory, CategoryConfigItem, SizeOption } from '../ts/types';
 import { categoryConfig } from './category-data';
+import { showToast } from './show-toast';
 
 function renderModal(product: Product, modalContainer: HTMLElement): void {
   const activeTab = document.querySelector<HTMLElement>('.menu__tab--active');
@@ -136,9 +137,9 @@ async function openModalById(
     const product = await getProductById(productId);
     if (!product) throw new Error('Product not found');
     renderModal(product, modalContainer);
-  } catch (err) {
-    console.error('openModalById error:', err);
+  } catch {
     closeModal(modal, overlay);
+    showToast('Something went wrong. Please, try again.');
   }
 }
 
