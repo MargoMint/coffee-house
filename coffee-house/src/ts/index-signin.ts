@@ -8,11 +8,11 @@ if (isLoginned()) {
   window.location.href = 'menu.html';
 }
 
-const form = document.getElementById('sign-in-form') as HTMLFormElement;
+const form = document.getElementById('signin-form') as HTMLFormElement;
 const submitError = document.getElementById('submit-error') as HTMLParagraphElement;
-const button = form.querySelector<HTMLButtonElement>('.button-sign-in')!;
+const button = form.querySelector<HTMLButtonElement>('.button-signin')!;
 
-initFormValidation(form, '.button-sign-in');
+initFormValidation(form, '.button-signin');
 
 form.addEventListener('submit', async (event) => {
   event.preventDefault();

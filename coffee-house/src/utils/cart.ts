@@ -92,7 +92,7 @@ export async function renderButtons(container: HTMLElement): Promise<void> {
     container.appendChild(confirmBtn);
   } else {
     const signInLink = document.createElement('a');
-    signInLink.href = 'sign-in.html';
+    signInLink.href = 'signin.html';
     signInLink.className = 'cart__btn';
 
     const signInBtn = document.createElement('button');

@@ -7,6 +7,9 @@ export default defineConfig({
       input: {
         index: 'index.html',
         menu: 'menu.html',
+        cart: 'cart.html',
+        signin: 'signin.html',
+        registration: 'registration.html',
       },
     },
     outDir: 'dist',
