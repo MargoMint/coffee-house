@@ -1,5 +1,5 @@
 export const citiesWithStreets: Record<string, string[]> = {
-  city1: [
+  gdansk: [
     'Dluga',
     'Mariacka',
     'Targowa',
@@ -11,7 +11,7 @@ export const citiesWithStreets: Record<string, string[]> = {
     'Chlebnicka',
     'Piwna',
   ],
-  city2: [
+  warszawa: [
     'Marszalkowska',
     'Nowy Swiat',
     'Krolewska',
@@ -23,7 +23,7 @@ export const citiesWithStreets: Record<string, string[]> = {
     'Jasna',
     'Cicha',
   ],
-  city3: [
+  poznan: [
     'Stary Rynek',
     'Wroclawska',
     'Polna',

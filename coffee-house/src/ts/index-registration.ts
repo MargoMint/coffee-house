@@ -3,6 +3,7 @@ import { initFormValidation } from '../utils/form-utils';
 import { registerUser } from './api';
 import { citiesWithStreets } from '../utils/cities-data';
 import { setIsLoginned, isLoginned } from '../utils/auth';
+import { getProfile } from './api';
 
 if (isLoginned()) {
   window.location.href = 'menu.html';
@@ -16,9 +17,9 @@ const streetSelect = document.getElementById('street') as HTMLSelectElement;
 
 function updateStreets(city: string): void {
   if (city && citiesWithStreets[city]) {
-    citiesWithStreets[city].forEach((street, i) => {
+    citiesWithStreets[city].forEach((street) => {
       const option = document.createElement('option');
-      option.value = `street${i + 1}`;
+      option.value = street;
       option.textContent = street;
       streetSelect.appendChild(option);
     });
@@ -51,6 +52,18 @@ form.addEventListener('submit', async (event) => {
   } else {
     setIsLoginned(true);
     form.reset();
+
+    const profile = await getProfile();
+
+    if (profile) {
+      const { city, street, houseNumber, paymentMethod } = profile;
+
+      localStorage.setItem(
+        'userProfile',
+        JSON.stringify({ city, street, houseNumber, paymentMethod })
+      );
+    }
+
     window.location.href = 'menu.html';
   }
 });

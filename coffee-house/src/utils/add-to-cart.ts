@@ -1,4 +1,5 @@
 import type { CartItem } from '../ts/types';
+import { isLoginned } from './auth';
 
 export function addToCart(counter: HTMLElement): void {
   const currentCount = parseInt(counter.textContent || '0', 10);
@@ -6,6 +7,16 @@ export function addToCart(counter: HTMLElement): void {
   counter.textContent = newCount.toString();
 
   localStorage.setItem('productCount', newCount.toString());
+
+  const menuBag = document.querySelector<HTMLElement>('#menu-bag');
+  if (menuBag) {
+    if (isLoginned()) {
+      menuBag.classList.remove('hidden');
+    } else {
+      if (newCount > 0) menuBag.classList.remove('hidden');
+      else menuBag.classList.add('hidden');
+    }
+  }
 
   const modal = document.querySelector<HTMLElement>('.modal__content');
   if (!modal) return;

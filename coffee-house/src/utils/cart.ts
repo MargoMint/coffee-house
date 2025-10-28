@@ -1,4 +1,6 @@
 import type { CartItem } from '../ts/types';
+import { isLoginned } from './auth';
+import { handleConfirmOrder } from './confirm-order';
 
 export function renderCart(items: CartItem[], container: HTMLElement, totalEl: HTMLElement): void {
   container.innerHTML = items
@@ -72,4 +74,44 @@ function removeCartItem(index: number): void {
   const container = document.querySelector<HTMLElement>('.cart__wrapper');
   const totalEl = document.querySelector<HTMLElement>('.cart__total-price');
   if (container && totalEl) renderCart(items, container, totalEl);
+}
+
+export async function renderButtons(container: HTMLElement): Promise<void> {
+  container.innerHTML = '';
+
+  if (isLoginned()) {
+    const confirmBtn = document.createElement('button');
+    confirmBtn.type = 'button';
+    confirmBtn.className = 'button button-secondary cart__confirm';
+    confirmBtn.textContent = 'Confirm';
+
+    confirmBtn.addEventListener('click', async () => {
+      await handleConfirmOrder();
+    });
+
+    container.appendChild(confirmBtn);
+  } else {
+    const signInLink = document.createElement('a');
+    signInLink.href = 'sign-in.html';
+    signInLink.className = 'cart__btn';
+
+    const signInBtn = document.createElement('button');
+    signInBtn.type = 'button';
+    signInBtn.className = 'button button-secondary';
+    signInBtn.textContent = 'Sign In';
+    signInLink.appendChild(signInBtn);
+
+    const regLink = document.createElement('a');
+    regLink.href = 'registration.html';
+    regLink.className = 'cart__btn';
+
+    const regBtn = document.createElement('button');
+    regBtn.type = 'button';
+    regBtn.className = 'button button-secondary button-registration';
+    regBtn.textContent = 'Registration';
+    regLink.appendChild(regBtn);
+
+    container.appendChild(signInLink);
+    container.appendChild(regLink);
+  }
 }

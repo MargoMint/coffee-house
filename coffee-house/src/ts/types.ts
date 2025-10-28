@@ -51,3 +51,34 @@ export interface ApiResponse<T = Product[]> {
   message?: string;
   error?: string;
 }
+
+export interface ProfileResponse {
+  data: {
+    id: number;
+    login: string;
+    city: string;
+    street: string;
+    houseNumber: number;
+    paymentMethod: string;
+    createdAt: string;
+  };
+  message?: string;
+  error?: string;
+}
+
+export interface OrderItem {
+  productId: number;
+  size: string;
+  additives: string[];
+  quantity: number;
+}
+
+export interface ConfirmOrderRequest {
+  items: OrderItem[];
+  totalPrice: number;
+}
+
+export interface ConfirmOrderResponse {
+  message?: string;
+  error?: string;
+}
