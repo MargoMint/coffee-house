@@ -65,7 +65,9 @@
     width: 200px;
   }
 
-  &__total {
+  &__total,
+  &__address,
+  &__pay {
     margin-left: 48px;
     display: flex;
     justify-content: space-between;
@@ -73,6 +75,16 @@
     &-price {
       display: flex;
       gap: 20px;
+      font-weight: 600;
+      font-size: 24px;
+      line-height: 125%;
+    }
+  }
+
+  &__address,
+  &__pay {
+    text-transform: capitalize;
+    &-value {
       font-weight: 600;
       font-size: 24px;
       line-height: 125%;

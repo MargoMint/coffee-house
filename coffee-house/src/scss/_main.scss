@@ -345,11 +345,11 @@
 
 .toast {
   position: fixed;
-  bottom: 20px;
-  left: 20px;
+  top: 20px;
+  right: 20px;
   padding: 12px 20px;
   z-index: 1000;
-  border-radius: 8px 8px 8px 0;
+  border-radius: 8px 0 8px 8px;
   color: $color-text-light;
   background-color: $color-bg-backdrop;
   transition: opacity 0.3s ease;
