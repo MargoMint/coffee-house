@@ -4,6 +4,7 @@ import type { Product, ProductCategory, CategoryConfigItem, SizeOption } from '.
 import { categoryConfig } from './category-data';
 import { showToast } from './show-toast';
 import { isLoginned } from './auth';
+import { showTooltip } from './show-tooltip';
 
 function renderModal(product: Product, modalContainer: HTMLElement): void {
   const activeTab = document.querySelector<HTMLElement>('.menu__tab--active');
@@ -158,7 +159,6 @@ function setupPriceLogic(product: Product, modalContainer: HTMLElement): void {
   if (!priceBlock) return;
 
   const userLoggedIn = isLoginned();
-
   const basePrice = Number(product.price);
   const baseDiscount = userLoggedIn && product.discountPrice ? Number(product.discountPrice) : null;
   let sizeExtra = 0;
@@ -175,19 +175,37 @@ function setupPriceLogic(product: Product, modalContainer: HTMLElement): void {
   };
 
   sizeButtons.forEach((btn) => {
+    const price = parseFloat(btn.dataset.price ?? '0') || 0;
+
+    const tooltipText =
+      userLoggedIn && product.discountPrice
+        ? `<span class="tooltip__old">$${(basePrice + price).toFixed(2)}</span>
+      <span>$${(baseDiscount! + price).toFixed(2)}</span>`
+        : `$${(basePrice + price).toFixed(2)}`;
+
+    btn.addEventListener('mouseenter', () => {
+      showTooltip(btn, tooltipText);
+    });
+
     btn.addEventListener('click', () => {
       sizeButtons.forEach((b) => b.classList.remove('active'));
       btn.classList.add('active');
-      sizeExtra = parseFloat(btn.dataset.price ?? '0') || 0;
+      sizeExtra = price;
       updatePrice();
     });
   });
 
   addButtons.forEach((btn) => {
+    const price = parseFloat(btn.dataset.price ?? '0') || 0;
+    const tooltipText = `+$${price.toFixed(2)}`;
+
+    btn.addEventListener('mouseenter', () => {
+      showTooltip(btn, tooltipText);
+    });
+
     btn.addEventListener('click', () => {
       btn.classList.toggle('active');
-      const delta = parseFloat(btn.dataset.price ?? '0') || 0;
-      addExtras += btn.classList.contains('active') ? delta : -delta;
+      addExtras += btn.classList.contains('active') ? price : -price;
       updatePrice();
     });
   });
