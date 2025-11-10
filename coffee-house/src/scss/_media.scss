@@ -280,6 +280,11 @@
       transition: stroke 0.3s ease;
     }
   }
+
+  .quiz__option:hover {
+    color: $color-text-light;
+    background-color: $color-border-dark;
+  }
 }
 
 @media (hover: none) {
@@ -355,5 +360,10 @@
     svg path {
       stroke: $color-bg-container;
     }
+  }
+
+  .quiz__option:hover {
+    color: $color-border-dark;
+    background-color: $color-bg-white;
   }
 }
