@@ -224,7 +224,8 @@
 
   .header__menu:hover,
   .header__item:hover,
-  .mobile-menu__item:hover {
+  .mobile-menu__item:hover,
+  .form__link:hover {
     border-bottom: 2px solid $color-text-dark;
   }
 
@@ -307,7 +308,8 @@
 
   .header__menu:hover,
   .header__item:hover,
-  .mobile-menu__item:hover {
+  .mobile-menu__item:hover,
+  .form__link:hover {
     border-bottom: 2px solid transparent;
   }
 
