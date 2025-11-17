@@ -353,6 +353,35 @@
   color: $color-text-light;
   background-color: $color-bg-backdrop;
   transition: opacity 0.3s ease;
+
+  &__text {
+    font-size: 18px;
+    text-align: center;
+  }
+
+  &__buttons {
+    display: flex;
+    justify-content: space-evenly;
+    gap: 8px;
+    flex-wrap: wrap;
+  }
+
+  &--confirm {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    background: $color-text-light;
+    border-radius: 40px;
+    color: $color-text-dark;
+    padding: 16px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+    max-width: 800px;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 1000;
+  }
 }
 
 .quiz {

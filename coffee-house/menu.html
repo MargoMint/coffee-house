@@ -54,6 +54,17 @@
         </nav>
 
         <div class="header__wrapper">
+          <div class="header__account hidden" id="account">
+            <button class="header__account-icon" id="account-icon">
+              <img src="icons/user.svg" alt="account icon" />
+            </button>
+
+            <div class="header__account-dropdown" id="account-dropdown">
+              <p class="header__account-name" id="account-name"></p>
+              <button class="header__logout-btn" id="logout-btn">Logout</button>
+            </div>
+          </div>
+
           <a href="cart.html" class="header__menu" id="menu-bag">
             <img src="icons/shopping-bag.svg" alt="shopping-bag" class="header__menu-img" />
             <span class="header__menu-text header__menu-count link"></span>
