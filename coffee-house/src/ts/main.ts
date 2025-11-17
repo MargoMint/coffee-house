@@ -1,4 +1,5 @@
 import { isLoginned } from '../utils/auth';
+import '../utils/init-account';
 
 document.addEventListener('DOMContentLoaded', () => {
   const menuBag = document.querySelector<HTMLElement>('#menu-bag');

@@ -1,5 +1,6 @@
 import './main';
 import '../utils/add-to-cart';
+import '../utils/init-account';
 import type { CartItem } from './types';
 import { renderCart } from '../utils/cart';
 import { renderButtons } from '../utils/cart';
