@@ -26,7 +26,9 @@ function updateStreets(city: string): void {
   }
 }
 
-citySelect.addEventListener('change', () => updateStreets(citySelect.value));
+if (citySelect) {
+  citySelect.addEventListener('change', () => updateStreets(citySelect.value));
+}
 initFormValidation(form);
 
 form.addEventListener('submit', async (event) => {

@@ -6,7 +6,7 @@ import { showToast } from './show-toast';
 import { isLoginned } from './auth';
 import { showTooltip } from './show-tooltip';
 
-function renderModal(product: Product, modalContainer: HTMLElement): void {
+export function renderModal(product: Product, modalContainer: HTMLElement): void {
   const activeTab = document.querySelector<HTMLElement>('.menu__tab--active');
   const category = (activeTab?.id as ProductCategory) || 'coffee';
   const imgPath = `/img/products/${category}/${product.id}.jpg`;
@@ -107,7 +107,7 @@ export function setupModalListeners(): void {
   });
 }
 
-function setupModalActions(modalContainer: HTMLElement): void {
+export function setupModalActions(modalContainer: HTMLElement): void {
   const modal = document.querySelector<HTMLElement>('.modal-wrapper');
   const overlay = document.querySelector<HTMLElement>('.overlay');
   const addToCartBtn = modalContainer.querySelector<HTMLButtonElement>('.modal__add');
@@ -132,7 +132,7 @@ function setupModalActions(modalContainer: HTMLElement): void {
   }
 }
 
-async function openModalById(
+export async function openModalById(
   productId: number,
   overlay: HTMLElement,
   modal: HTMLElement,
@@ -152,7 +152,7 @@ async function openModalById(
   }
 }
 
-function setupPriceLogic(product: Product, modalContainer: HTMLElement): void {
+export function setupPriceLogic(product: Product, modalContainer: HTMLElement): void {
   const sizeButtons = Array.from(modalContainer.querySelectorAll<HTMLButtonElement>('.size-btn'));
   const addButtons = Array.from(modalContainer.querySelectorAll<HTMLButtonElement>('.add-btn'));
   const priceBlock = modalContainer.querySelector<HTMLElement>('.modal__price-block');
@@ -213,7 +213,7 @@ function setupPriceLogic(product: Product, modalContainer: HTMLElement): void {
   updatePrice();
 }
 
-function closeModal(modal: HTMLElement, overlay: HTMLElement): void {
+export function closeModal(modal: HTMLElement, overlay: HTMLElement): void {
   modal.classList.remove('active');
   overlay.classList.remove('active');
   document.body.style.overflow = '';
