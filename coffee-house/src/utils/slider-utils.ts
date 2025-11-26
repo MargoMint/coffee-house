@@ -1,9 +1,8 @@
 import type { SliderItem } from '../ts/types';
 
-const SLIDE_INTERVAL = 6000;
+const SLIDE_INTERVAL = 5500;
 let currentIndex = 0;
-let autoTimer: number | undefined;
-let isPaused = false;
+let autoTimer: ReturnType<typeof setInterval> | undefined;
 
 export function renderSlider(sliderData: SliderItem[]): void {
   const sliderLine = document.querySelector('.slider__line') as HTMLElement;
@@ -60,21 +59,20 @@ export function initSlider(): void {
 
   const startAuto = (): void => {
     stopAuto();
-    autoTimer = setInterval(() => {
-      if (!isPaused) nextSlide();
-    }, SLIDE_INTERVAL);
-    restartProgress();
+    autoTimer = setInterval(nextSlide, SLIDE_INTERVAL);
   };
 
-  const stopAuto = (): void => clearInterval(autoTimer);
+  const stopAuto = (): void => {
+    if (autoTimer) clearInterval(autoTimer);
+  };
 
   const restartProgress = (): void => {
     controls.forEach((ctrl) => ctrl.classList.remove('active'));
     controls[currentIndex].classList.add('active');
   };
 
-  line.addEventListener('mouseenter', () => (isPaused = true));
-  line.addEventListener('mouseleave', () => (isPaused = false));
+  line.addEventListener('mouseenter', stopAuto);
+  line.addEventListener('mouseleave', startAuto);
 
   let startX = 0;
   line.addEventListener('touchstart', (e) => (startX = e.touches[0].clientX));

@@ -106,12 +106,26 @@
       width: 0%;
       height: 100%;
       background: $color-bg-container;
-      transition: width linear;
+      animation: fill 6s linear forwards;
+      animation-play-state: var(--pause, paused);
+    }
+
+    &:not(.active)::after {
+      animation: none;
+      width: 0%;
     }
 
     &.active::after {
-      width: 100%;
-      transition: width 6s linear;
+      animation-play-state: var(--pause, running);
     }
+  }
+}
+
+@keyframes fill {
+  from {
+    width: 0%;
+  }
+  to {
+    width: 100%;
   }
 }
