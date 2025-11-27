@@ -1,0 +1,88 @@
+.footer {
+  margin-top: 93px;
+  &__container {
+    border-radius: 40px;
+    background-color: $color-bg-container;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 100px;
+    padding: min(8vw, 100px);
+  }
+  &__offer {
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+    &-title {
+      color: $color-text-light;
+    }
+    &-socials {
+      display: flex;
+      gap: 12px;
+    }
+    &-item {
+      width: 60px;
+      height: 60px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      border: 1px solid $color-border-light;
+      border-radius: 50%;
+      background-color: transparent;
+      transition: all 0.3s ease;
+    }
+    &-img {
+      width: 24px;
+      height: 24px;
+      display: block;
+    }
+  }
+  &__contacts {
+    color: $color-text-light;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+    &-title {
+      font-weight: 600;
+      font-size: 24px;
+      line-height: 125%;
+      letter-spacing: 0.5px;
+    }
+
+    &-list {
+      margin-top: 40px;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    &-item {
+      display: flex;
+      align-items: center;
+      span {
+        font-weight: 600;
+        font-size: 16px;
+        line-height: 150%;
+      }
+    }
+
+    &-link {
+      display: flex;
+      align-items: center;
+      text-decoration: none;
+      color: inherit;
+      border-bottom: 2px solid transparent;
+      padding-bottom: 4px;
+      transition: border-color 0.3s ease;
+    }
+
+    &-icon {
+      width: 20px;
+      height: 20px;
+      margin-right: 8px;
+    }
+  }
+  &__menu {
+    margin-top: 100px;
+  }
+}

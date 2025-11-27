@@ -1,0 +1,387 @@
+@media (max-width: 986px) {
+  .app {
+    &__container {
+      grid-template-columns: 1fr;
+    }
+    &__img {
+      display: flex;
+      justify-content: center;
+    }
+  }
+}
+
+@media (max-width: 880px) {
+  .header {
+    &__container {
+      gap: 0;
+    }
+
+    &__list,
+    &__menu,
+    &__account {
+      display: none;
+    }
+
+    &__burger {
+      display: flex;
+      margin-left: auto;
+    }
+  }
+
+  .modal {
+    width: calc(100% - 80px);
+    max-width: none;
+    &__additives {
+      margin-bottom: 14px;
+    }
+  }
+}
+
+@media (max-width: 707px) {
+  .modal {
+    width: calc(100% - 38px);
+    padding: 16px;
+
+    &__img {
+      display: none;
+    }
+
+    &__content {
+      flex-direction: column;
+      align-items: stretch;
+    }
+
+    &__info {
+      padding-left: 0;
+    }
+  }
+
+  .enjoy {
+    &__container {
+      padding: 60px 10px 0 16px;
+    }
+
+    &__title {
+      font-size: 42px;
+      line-height: 115%;
+      letter-spacing: 1.5px;
+    }
+  }
+}
+
+@media (max-width: 768px) {
+  .page {
+    padding: 0 40px !important;
+  }
+
+  .container {
+    max-width: 688px;
+  }
+
+  .about {
+    &__img {
+      width: 688px;
+    }
+  }
+
+  .enjoy {
+    &__container {
+      padding: 100px 50px 0 60px;
+    }
+  }
+
+  .footer {
+    &__container {
+      grid-template-columns: 1fr;
+      gap: 100px;
+      padding: 100px 60px;
+    }
+  }
+}
+
+@media (max-width: 556px) {
+  .page {
+    padding: 0 16px !important;
+  }
+
+  .title {
+    font-size: 32px !important;
+    line-height: 125% !important;
+    letter-spacing: 1px !important;
+  }
+
+  .container {
+    max-width: 348px;
+  }
+
+  .app {
+    &__title {
+      font-size: 32px;
+      line-height: 125%;
+    }
+
+    &__btns {
+      flex-direction: column;
+    }
+  }
+
+  .slider {
+    &__buttons {
+      display: none;
+    }
+    &__img-container img {
+      width: 348px;
+      height: 348px;
+    }
+  }
+
+  .footer {
+    &__container {
+      padding: 60px 16px !important;
+    }
+  }
+}
+
+@media (max-width: 380px) {
+  .about {
+    &__title,
+    .title-accent {
+      font-size: 32px;
+    }
+
+    &__img {
+      max-width: 348px;
+      width: 100%;
+      height: 590px;
+    }
+  }
+}
+
+@media (min-width: 360px) and (max-width: 768px) {
+  .mobile-menu {
+    align-items: normal;
+
+    &__items {
+      padding-top: 60px;
+    }
+  }
+
+  .about {
+    &__galary-wrapper {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 40px;
+      height: auto;
+      width: 100%;
+    }
+
+    &__img {
+      width: 100%;
+      max-width: 688px;
+      height: 590px;
+      border-radius: 18px;
+      overflow: hidden;
+
+      img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display: block;
+      }
+    }
+
+    li:nth-child(2),
+    li:nth-child(3) {
+      display: none;
+    }
+  }
+
+  .app {
+    &__container {
+      grid-template-columns: 1fr;
+    }
+  }
+}
+
+@media (hover: hover) {
+  .button-primary:hover {
+    .button__text {
+      transform: translateX(-8px);
+    }
+
+    .button__icon {
+      display: flex;
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+
+  .button-secondary:hover {
+    color: $color-text-light;
+    background-color: $color-bg-container;
+  }
+
+  .header__menu:hover,
+  .header__item:hover,
+  .mobile-menu__item:hover,
+  .form__link:hover {
+    border-bottom: 2px solid $color-text-dark;
+  }
+
+  .about__img img:hover {
+    transform: scale(1);
+  }
+
+  .app__btn:hover {
+    background-color: $color-bg-container;
+    color: $color-text-light;
+    border-color: $color-bg-container;
+
+    .app__btn-text {
+      color: $color-text-light;
+    }
+
+    .app__btn-img path {
+      fill: $color-text-light;
+    }
+  }
+
+  .menu__tab:hover {
+    background-color: $color-bg-container;
+    color: $color-text-light;
+  }
+
+  .menu-card:hover .menu-card__img {
+    transform: scale(1);
+  }
+
+  .load-more:hover {
+    background-color: $color-bg-container;
+  }
+
+  .footer__contacts-link:hover {
+    border-bottom-color: $color-text-light;
+  }
+
+  .footer__offer-item:hover {
+    background-color: $color-text-light;
+
+    .footer__offer-img path {
+      stroke: $color-text-dark;
+      transition: stroke 0.3s ease;
+    }
+  }
+
+  .slider__btn:hover {
+    background: $color-bg-container;
+
+    svg path {
+      stroke: $color-text-light;
+      transition: stroke 0.3s ease;
+    }
+  }
+
+  .quiz__option:hover {
+    color: $color-text-light;
+    background-color: $color-border-dark;
+  }
+
+  .header__logout-btn:hover {
+    color: transparent;
+  }
+
+  .header__logout-btn:hover::before {
+    opacity: 1;
+  }
+}
+
+@media (hover: none) {
+  .button-primary:hover {
+    .button__text {
+      transform: none;
+    }
+
+    .button__icon {
+      display: none;
+      opacity: 0;
+      transform: translateX(8px);
+    }
+  }
+
+  .button-secondary:hover {
+    color: inherit;
+    background-color: transparent;
+  }
+
+  .header__menu:hover,
+  .header__item:hover,
+  .mobile-menu__item:hover,
+  .form__link:hover {
+    border-bottom: 2px solid transparent;
+  }
+
+  .about__img img:hover {
+    transform: scale(1.05);
+  }
+
+  .app__btn:hover {
+    background-color: transparent;
+    color: $color-text-dark;
+    border-color: $color-border-dark;
+
+    .app__btn-text {
+      color: $color-text-dark;
+    }
+
+    .app__btn-img path {
+      fill: $color-text-dark;
+    }
+  }
+
+  .menu__tab:hover {
+    background-color: transparent;
+    color: $color-text-dark;
+  }
+
+  .menu-card:hover .menu-card__img {
+    transform: scale(1.05);
+  }
+
+  .load-more:hover {
+    background-color: transparent;
+  }
+
+  .footer__contacts-link:hover {
+    border-bottom-color: transparent;
+  }
+
+  .footer__offer-item:hover {
+    background-color: transparent;
+
+    .footer__offer-img path {
+      stroke: $color-text-light;
+    }
+  }
+
+  .slider__btn:hover {
+    background: transparent;
+
+    svg path {
+      stroke: $color-bg-container;
+    }
+  }
+
+  .quiz__option:hover {
+    color: $color-border-dark;
+    background-color: $color-bg-white;
+  }
+
+  .header__logout-btn:hover {
+    color: inherit;
+  }
+
+  .header__logout-btn:hover::before {
+    opacity: 0;
+  }
+}
